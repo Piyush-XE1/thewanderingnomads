@@ -78,28 +78,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "The Wandering Nomads — By KRISH" },
+      { title: "The Wandering Nomads — Small-group trips across India & beyond" },
       {
         name: "description",
         content:
-          "Founder-led expeditions across India's most breathtaking destinations—crafted with trust, community, and unforgettable experiences.",
+          "Community expeditions with confirmed dates. India, the Himalayas, and custom international journeys — small groups, hosted departures, limited seats.",
       },
       { name: "author", content: "The Wandering Nomads" },
       { name: "theme-color", content: "#f8f6f0" },
       { property: "og:site_name", content: "The Wandering Nomads" },
-      { property: "og:title", content: "The Wandering Nomads — By KRISH" },
+      {
+        property: "og:title",
+        content: "The Wandering Nomads — Small-group trips across India & beyond",
+      },
       {
         property: "og:description",
         content:
-          "Founder-led expeditions across India's most breathtaking destinations—crafted with trust, community, and unforgettable experiences.",
+          "Community expeditions with confirmed dates. India, the Himalayas, and custom international journeys.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "The Wandering Nomads — By KRISH" },
+      {
+        name: "twitter:title",
+        content: "The Wandering Nomads — Small-group trips across India & beyond",
+      },
       {
         name: "twitter:description",
         content:
-          "Founder-led expeditions across India's most breathtaking destinations—crafted with trust, community, and unforgettable experiences.",
+          "Community expeditions with confirmed dates. India, the Himalayas, and custom international journeys.",
       },
       {
         property: "og:image",

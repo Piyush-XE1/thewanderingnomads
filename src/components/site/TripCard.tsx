@@ -7,13 +7,11 @@ import type {
   TripBatchRecord,
 } from "@/lib/cms/types";
 import { batchesForTrip, formatBatchDates, hostsForBatch, upcomingBatch } from "@/lib/trips";
-import { RichText } from "@/components/site/RichText";
-
-import heroImg from "@/assets/hero-himalaya.jpg";
+import { coverForJourney } from "@/lib/destinations";
 
 /**
- * Reusable trip card — the product unit of the site.
- * Shows the next departure and lead host when batch data exists.
+ * Commercial trip card — the product unit of the site.
+ * Mirrors the reference listing: photo, group type, next date, duration, price.
  */
 export function TripCard({
   trip,
@@ -31,9 +29,12 @@ export function TripCard({
   const lead = batch
     ? hostsForBatch(batch.id, batchHosts, hosts).find((h) => h.role === "lead")?.host
     : undefined;
+  const extraDates = Math.max(
+    0,
+    tripBatches.filter((b) => b.start_date >= (batch?.start_date ?? "")).length - 1,
+  );
 
-  const img = trip.hero_image_url ?? heroImg;
-  const tag = trip.best_season ?? "Expedition";
+  const img = coverForJourney(trip);
 
   return (
     <Link
@@ -50,12 +51,17 @@ export function TripCard({
           height={1050}
           className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.06]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-        <div className="absolute left-4 top-4 flex gap-2">
+        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           <span className="rounded-full glass-dark px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-white">
-            {tag}
+            Group
           </span>
+          {trip.is_available ? null : (
+            <span className="rounded-full glass-dark px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-white">
+              Waitlist
+            </span>
+          )}
         </div>
         {trip.duration ? (
           <span className="absolute right-4 top-4 rounded-full glass-dark px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-white">
@@ -67,40 +73,46 @@ export function TripCard({
           <p className="text-[11px] uppercase tracking-[0.18em] text-white/70">
             {trip.destination}
           </p>
-          <h3 className="display mt-1 text-3xl">{trip.title}</h3>
+          <h3 className="display mt-1 text-3xl leading-[0.95]">{trip.title}</h3>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        {trip.short_description ? (
-          <RichText
-            html={trip.short_description}
-            className="text-[14.5px] leading-[1.65] text-muted-foreground"
-          />
-        ) : null}
-
-        <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-ink/8 pt-5 text-[11px]">
+        <dl className="grid grid-cols-2 gap-3 text-[12px]">
           <div>
-            <dt className="uppercase tracking-[0.16em] text-muted-foreground">Level</dt>
-            <dd className="mt-1 text-ink">{trip.difficulty ?? "—"}</dd>
-          </div>
-          <div>
-            <dt className="uppercase tracking-[0.16em] text-muted-foreground">Next</dt>
-            <dd className="mt-1 text-ink">{batch ? formatBatchDates(batch) : "TBA"}</dd>
+            <dt className="uppercase tracking-[0.16em] text-muted-foreground">Next departure</dt>
+            <dd className="mt-1 text-ink">
+              {batch ? formatBatchDates(batch) : "Dates on request"}
+              {extraDates > 0 ? (
+                <span className="text-muted-foreground"> (+{extraDates})</span>
+              ) : null}
+            </dd>
           </div>
           <div>
             <dt className="uppercase tracking-[0.16em] text-muted-foreground">Seats</dt>
             <dd className="mt-1 text-ink">
-              {batch?.seats_remaining != null ? batch.seats_remaining : "—"}
+              {batch?.seats_remaining != null ? `${batch.seats_remaining} left` : "Ask us"}
             </dd>
           </div>
         </dl>
 
-        <div className="mt-6 flex items-center justify-between border-t border-ink/8 pt-4">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-            {lead ? `Led by ${lead.name}` : "Led by The Wandering Nomads"}
+        <div className="mt-auto flex items-end justify-between gap-3 border-t border-ink/8 pt-4 mt-5">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+              {trip.duration
+                ? `${trip.duration} package`
+                : lead
+                  ? `Hosted by ${lead.name}`
+                  : "Hosted departure"}
+            </p>
+            {trip.price ? <p className="display mt-1 text-2xl text-ink">{trip.price}</p> : null}
+          </div>
+          <span className="inline-flex items-center gap-1 text-[13px] font-medium text-ink">
+            Details
+            <span aria-hidden className="transition group-hover:translate-x-0.5">
+              →
+            </span>
           </span>
-          {trip.price ? <span className="display text-xl text-ink">{trip.price}</span> : null}
         </div>
       </div>
     </Link>

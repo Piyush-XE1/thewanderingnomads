@@ -1,12 +1,15 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-type Milestone = {
+import { RichText } from "@/components/site/RichText";
+import type { Milestone } from "@/lib/cms/types";
+
+type Chapter = {
   year: string;
   title: string;
   body: string;
 };
 
-const milestones: Milestone[] = [
+const defaults: Chapter[] = [
   {
     year: "Origin",
     title: "A small village in Deoria",
@@ -40,17 +43,20 @@ const milestones: Milestone[] = [
   {
     year: "2024",
     title: "Founding The Wandering Nomads",
-    body: "A founder-led expedition brand for young travellers who want the real thing — small groups, real places.",
-  },
-  {
-    year: "Parallel",
-    title: "Certified ethical hacker",
-    body: "A quieter part of the story — the cybersecurity discipline that shapes the logistics behind every journey.",
+    body: "A hosted expedition brand for young travellers who want the real thing — small groups, real places.",
   },
 ];
 
-export function Timeline() {
+export function Timeline({ items }: { items?: Milestone[] }) {
   const reduced = useReducedMotion();
+  const chapters: Chapter[] =
+    items && items.length > 0
+      ? items.map((m) => ({
+          year: m.year ?? "",
+          title: m.title,
+          body: m.description ?? "",
+        }))
+      : defaults;
 
   return (
     <ol className="relative">
@@ -58,9 +64,9 @@ export function Timeline() {
         aria-hidden
         className="pointer-events-none absolute left-[6.5rem] top-2 bottom-2 hidden w-px bg-gradient-to-b from-transparent via-ink/15 to-transparent sm:block"
       />
-      {milestones.map((m, i) => (
+      {chapters.map((m, i) => (
         <motion.li
-          key={m.title}
+          key={`${m.title}-${i}`}
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 28, filter: "blur(6px)" }}
           whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-15% 0px" }}
@@ -88,12 +94,13 @@ export function Timeline() {
             <h3 className="display text-[26px] sm:text-[30px] leading-[1.05] text-ink text-balance">
               {m.title}
             </h3>
-            <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.65] text-muted-foreground">
-              {m.body}
-            </p>
+            <RichText
+              html={m.body}
+              className="mt-3 max-w-[58ch] text-[15px] leading-[1.65] text-muted-foreground"
+            />
           </div>
 
-          {i < milestones.length - 1 && (
+          {i < chapters.length - 1 && (
             <div className="col-span-full sm:hidden">
               <div className="mx-0 mt-6 h-px w-16 bg-ink/15" />
             </div>

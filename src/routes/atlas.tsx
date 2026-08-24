@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
+import { SiteLayout } from "@/components/site/SiteLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { IndiaMap } from "@/components/atlas/IndiaMap";
 import { StatePanel } from "@/components/atlas/StatePanel";
@@ -17,13 +16,13 @@ export const Route = createFileRoute("/atlas")({
       {
         name: "description",
         content:
-          "A living archive of Krish's journeys across India. Explore every state, story, and destination as the atlas grows with each expedition.",
+          "A living atlas of the places The Wandering Nomads travel — states, stories and destinations as the map grows with each expedition.",
       },
       { property: "og:title", content: "Travel Atlas — The Wandering Nomads" },
       {
         property: "og:description",
         content:
-          "An interactive atlas of India — every highlighted state is a chapter of Krish's travels.",
+          "An interactive atlas of India — every highlighted state is a chapter on the road.",
       },
     ],
   }),
@@ -56,9 +55,7 @@ function AtlasPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Nav />
-
+    <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
         <div
@@ -80,8 +77,8 @@ function AtlasPage() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Explore India through Krish's journeys. Every highlighted state represents adventures,
-              memories, and stories waiting to be discovered.
+              Explore India through the routes we run. Every highlighted state is a chapter — places
+              we have walked, and keep returning to.
             </p>
           </Reveal>
         </div>
@@ -146,7 +143,7 @@ function AtlasPage() {
               <div className="mt-8 rounded-2xl border border-dashed border-ink/12 p-4">
                 <p className="eyebrow">Coming soon</p>
                 <p className="mt-2 text-sm text-ink/70">
-                  As Krish's journeys extend beyond India, this atlas will grow into a World Atlas —
+                  As the trips extend beyond India, this atlas will grow into a World Atlas —
                   countries, states, cities, and stories, all in one living archive.
                 </p>
               </div>
@@ -156,9 +153,7 @@ function AtlasPage() {
       </section>
 
       <StatePanel state={selected} onClose={() => setSelectedId(null)} />
-
-      <Footer />
-    </div>
+    </SiteLayout>
   );
 }
 

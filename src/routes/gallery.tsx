@@ -1,15 +1,26 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
+import { createFileRoute } from "@tanstack/react-router";
+
+import { SiteLayout } from "@/components/site/SiteLayout";
 import { Reveal } from "@/components/site/Reveal";
+import { useContent } from "@/lib/cms/useContent";
+
+import gCampfire from "@/assets/gallery-campfire.jpg";
+import gTrail from "@/assets/gallery-trail.jpg";
+import gLocal from "@/assets/gallery-local.jpg";
+import gPines from "@/assets/gallery-pines.jpg";
+import gLake from "@/assets/gallery-lake.jpg";
+import gVillage from "@/assets/gallery-village.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "Gallery — The Wandering Nomads" },
-      { name: "description", content: "Photographs from expeditions across the Himalayas." },
+      {
+        name: "description",
+        content: "Photographs from community trips across the Himalayas and India.",
+      },
       { property: "og:title", content: "Gallery — The Wandering Nomads" },
-      { property: "og:description", content: "Field photographs from Krish and past expeditions." },
+      { property: "og:description", content: "Field photographs from past expeditions." },
       { property: "og:url", content: "/gallery" },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
@@ -17,37 +28,71 @@ export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
+const FALLBACK = [
+  { src: gCampfire, loc: "Campfire · high camp" },
+  { src: gTrail, loc: "Pine trail · Himachal" },
+  { src: gLake, loc: "Alpine lake · Spiti" },
+  { src: gLocal, loc: "Local host · Kashmir" },
+  { src: gPines, loc: "Deodar canopy · Jibhi" },
+  { src: gVillage, loc: "Stone village · Uttarakhand" },
+];
+
 function GalleryPage() {
+  const { gallery: cmsGallery } = useContent();
+  const images =
+    cmsGallery.length > 0
+      ? cmsGallery.map((g) => ({
+          src: g.url,
+          loc: g.caption ?? g.location ?? g.alt_text ?? "",
+        }))
+      : FALLBACK;
+
   return (
-    <div className="min-h-screen bg-background">
-      <Nav />
+    <SiteLayout>
       <main className="pt-40 pb-32">
-        <div className="mx-auto max-w-4xl px-6">
+        <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <p className="eyebrow">Gallery</p>
-            <h1 className="display mt-4 text-5xl leading-[1.02] sm:text-6xl md:text-7xl">
-              Field notes from
+            <h1 className="display mt-4 max-w-3xl text-5xl leading-[1.02] sm:text-6xl md:text-7xl">
+              From the road,
               <br />
-              <em className="italic text-muted-foreground">the trail.</em>
+              <em className="italic text-muted-foreground">not the brochure.</em>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-10 max-w-2xl text-[16px] leading-relaxed text-muted-foreground">
-              The full gallery lives on the home page for now. A dedicated archive with locations
-              and dates is being prepared.
+            <p className="mt-6 max-w-xl text-[15.5px] leading-relaxed text-muted-foreground">
+              Stills from community trips — the light, the kitchens, the quiet between destinations.
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <Link
-              to="/"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-snow"
-            >
-              ← See gallery
-            </Link>
-          </Reveal>
+
+          <div className="mt-14 grid auto-rows-[220px] grid-cols-2 gap-3 sm:auto-rows-[280px] md:grid-cols-3 md:gap-4">
+            {images.map((g, i) => (
+              <Reveal
+                key={`${g.src}-${i}`}
+                delay={i * 0.04}
+                className={i % 5 === 0 ? "row-span-2" : ""}
+              >
+                <figure className="group relative h-full w-full overflow-hidden rounded-2xl hairline">
+                  <img
+                    src={g.src}
+                    alt={g.loc || "Trip photograph"}
+                    className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.05]"
+                    loading="lazy"
+                  />
+                  {g.loc ? (
+                    <>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                      <figcaption className="pointer-events-none absolute bottom-3 left-3 translate-y-2 text-[11px] uppercase tracking-[0.18em] text-white opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
+                        {g.loc}
+                      </figcaption>
+                    </>
+                  ) : null}
+                </figure>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </main>
-      <Footer />
-    </div>
+    </SiteLayout>
   );
 }

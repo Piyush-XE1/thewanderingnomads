@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
@@ -6,16 +6,28 @@ import { Logo } from "@/components/site/Logo";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/upcoming-trips", label: "Trips" },
-  { to: "/atlas", label: "Atlas" },
-  { to: "/gallery", label: "Gallery" },
+  { to: "/upcoming-trips", label: "Upcoming" },
+  { to: "/india-trips", label: "India" },
+  { to: "/international-trips", label: "International" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
+function isDarkHeroPath(pathname: string) {
+  return (
+    pathname === "/" ||
+    pathname === "/india-trips" ||
+    pathname === "/international-trips" ||
+    pathname.startsWith("/india-trips/") ||
+    pathname.startsWith("/international-trips/")
+  );
+}
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const light = isDarkHeroPath(pathname) && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,6 +35,10 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <motion.header
@@ -34,29 +50,29 @@ export function Nav() {
       <nav
         className={`flex w-full max-w-6xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-500 sm:px-6 sm:py-3 ${
           scrolled ? "glass" : "border border-white/10 bg-white/5 backdrop-blur-[6px]"
-        }`}
+        } ${!light && !scrolled ? "border-ink/10 bg-background/70 backdrop-blur-md" : ""}`}
       >
         <Link to="/" className="flex items-center gap-2.5 group">
-          <Logo variant={scrolled ? "dark" : "light"} size={32} />
+          <Logo variant={light ? "light" : "dark"} size={32} />
           <span
             className={`display text-[15px] tracking-tight transition-colors ${
-              scrolled ? "text-ink" : "text-white"
+              light ? "text-white" : "text-ink"
             }`}
           >
             The Wandering Nomads
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {links.map((l) => (
             <li key={l.to}>
               <Link
                 to={l.to}
-                className={`relative rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
-                  scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"
+                className={`relative rounded-full px-3 py-2 text-[13px] font-medium transition-colors ${
+                  light ? "text-white/80 hover:text-white" : "text-ink/70 hover:text-ink"
                 }`}
                 activeProps={{
-                  className: scrolled ? "text-ink bg-ink/5" : "text-white bg-white/15",
+                  className: light ? "text-white bg-white/15" : "text-ink bg-ink/5",
                 }}
                 activeOptions={{ exact: l.to === "/" }}
               >
@@ -66,25 +82,25 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle variant={scrolled ? "dark" : "light"} />
+        <div className="hidden items-center gap-2 lg:flex">
+          <ThemeToggle variant={light ? "light" : "dark"} />
           <Link
             to="/upcoming-trips"
             className={`inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium transition ${
-              scrolled ? "bg-ink text-snow hover:opacity-90" : "bg-white text-ink hover:bg-white/90"
+              light ? "bg-white text-ink hover:bg-white/90" : "bg-ink text-snow hover:opacity-90"
             }`}
           >
             Book Now
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle variant={scrolled ? "dark" : "light"} />
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle variant={light ? "light" : "dark"} />
 
           <button
             onClick={() => setOpen((v) => !v)}
-            className={`md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border transition ${
-              scrolled ? "border-ink/15 text-ink" : "border-white/25 text-white"
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition ${
+              light ? "border-white/25 text-white" : "border-ink/15 text-ink"
             }`}
             aria-label="Toggle menu"
             aria-expanded={open}
@@ -112,7 +128,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="glass absolute left-4 right-4 top-[72px] rounded-3xl p-3 md:hidden"
+            className="glass absolute left-4 right-4 top-[72px] rounded-3xl p-3 lg:hidden"
           >
             <ul className="flex flex-col">
               {links.map((l) => (
