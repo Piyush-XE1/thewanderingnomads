@@ -20,14 +20,6 @@ export function Footer() {
             url: "https://instagram.com/thewanderingnomads.in",
             sort_order: 0,
           },
-          {
-            id: "s2",
-            platform: "instagram",
-            label: "@wanderwithkrishh",
-            handle: null,
-            url: "https://instagram.com/wanderwithkrishh",
-            sort_order: 1,
-          },
         ];
 
   return (
@@ -44,27 +36,56 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A founder-led expedition brand — small groups, real places, journeys personally led by
-              Krish across the Himalayas and beyond.
+              Small-group community trips across India and beyond — confirmed dates, hosted
+              departures, and itineraries we have actually walked.
             </p>
             <p className="mt-6 text-xs text-muted-foreground">Jaipur, Rajasthan · India</p>
           </div>
 
-          <FooterCol title="Explore">
-            <FLink to="/">Home</FLink>
-            <FLink to="/upcoming-trips">Upcoming Trips</FLink>
-            <FLink to="/atlas">Travel Atlas</FLink>
-            <FLink to="/gallery">Gallery</FLink>
-            <FLink to="/about">About Krish</FLink>
+          <FooterCol title="Trips">
+            <FLink to="/upcoming-trips">Upcoming trips</FLink>
+            <FLink to="/india-trips">India</FLink>
+            <FLink to="/international-trips">International</FLink>
+            <li>
+              <Link
+                to="/india-trips/$slug"
+                params={{ slug: "kashmir" }}
+                className="transition hover:text-ink"
+              >
+                Kashmir
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/india-trips/$slug"
+                params={{ slug: "spiti" }}
+                className="transition hover:text-ink"
+              >
+                Spiti
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/international-trips/$slug"
+                params={{ slug: "bhutan" }}
+                className="transition hover:text-ink"
+              >
+                Bhutan
+              </Link>
+            </li>
           </FooterCol>
 
-          <FooterCol title="Contact">
+          <FooterCol title="The brand">
+            <FLink to="/about">About</FLink>
+            <FLink to="/gallery">Gallery</FLink>
+            <FLink to="/atlas">Travel Atlas</FLink>
+            <FLink to="/contact">Contact</FLink>
+          </FooterCol>
+
+          <FooterCol title="Talk to us">
             <FA href={`mailto:${email}`}>{email}</FA>
             <FA href={`tel:${phoneDigits ? `+${phoneDigits}` : ""}`}>{phone}</FA>
             <FA href={`https://wa.me/${phoneDigits}`}>WhatsApp</FA>
-          </FooterCol>
-
-          <FooterCol title="Follow">
             {socialLinks.map((l) => (
               <FA key={l.id} href={l.url}>
                 {l.label || l.handle || l.platform}
@@ -78,7 +99,7 @@ export function Footer() {
             {settings?.footer_copyright ??
               `© ${new Date().getFullYear()} The Wandering Nomads. Crafted with care in Jaipur.`}
           </p>
-          <p className="tracking-widest uppercase">Est. 23 · 11 · 2024</p>
+          <p className="tracking-widest uppercase">Community trips · Est. 2024</p>
         </div>
       </div>
     </footer>

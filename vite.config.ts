@@ -15,5 +15,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [mcpPlugin()],
+    server: {
+      host: "0.0.0.0",
+      allowedHosts: true,
+    },
   },
 });

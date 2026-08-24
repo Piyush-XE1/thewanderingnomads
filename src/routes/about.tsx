@@ -1,26 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
+
+import { SiteLayout } from "@/components/site/SiteLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { RichText } from "@/components/site/RichText";
 import { Timeline } from "@/components/site/Timeline";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { useContent } from "@/lib/cms/useContent";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Krish — Founder, The Wandering Nomads" },
+      { title: "About — The Wandering Nomads" },
       {
         name: "description",
         content:
-          "From a small village in Deoria to leading expeditions across the Himalayas — the story of Krishnakant Yadav, founder of The Wandering Nomads.",
+          "The story behind The Wandering Nomads — a small-group travel company born on the road across India.",
       },
-      { property: "og:title", content: "About Krish — Founder, The Wandering Nomads" },
+      { property: "og:title", content: "About — The Wandering Nomads" },
       {
         property: "og:description",
-        content:
-          "The founder's story behind The Wandering Nomads — village, road, community, expeditions.",
+        content: "How a year on the road became a community travel company.",
       },
       { property: "og:url", content: "/about" },
     ],
@@ -30,21 +28,21 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
-  const { about } = useContent();
+  const { about, milestones } = useContent();
 
   const defaultIntro =
-    "Krishnakant Yadav — Krish — has spent nine months on the road across India. Not for a list of places, but for the people at the end of each road. What follows is his journey, in eight short chapters.";
+    "The Wandering Nomads started because people asked to come along. What began as one backpack across India is now a small-group travel company — hosted departures, real places, and a community that still fits around a fire.";
 
   return (
-    <div className="min-h-screen bg-background">
-      <Nav />
+    <SiteLayout>
       <main className="pt-40 pb-32">
         <div className="mx-auto max-w-3xl px-6">
           <Reveal>
-            <p className="eyebrow">{about?.founder_title ?? "The founder"}</p>
+            <p className="eyebrow">{about?.founder_title ?? "About the company"}</p>
             <h1 className="display mt-5 text-5xl leading-[1.02] sm:text-6xl md:text-7xl text-balance">
-              A founder, not a<br />
-              <em className="italic text-muted-foreground">travel brand.</em>
+              The story behind
+              <br />
+              <em className="italic text-muted-foreground">the trips.</em>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
@@ -54,8 +52,8 @@ function AboutPage() {
           </Reveal>
         </div>
 
-        <section aria-label="Krish's journey" className="mx-auto mt-20 max-w-3xl px-6">
-          <Timeline />
+        <section aria-label="How we got here" className="mx-auto mt-20 max-w-3xl px-6">
+          <Timeline items={milestones} />
         </section>
 
         <div className="mx-auto mt-16 max-w-3xl px-6">
@@ -65,20 +63,18 @@ function AboutPage() {
                 to="/upcoming-trips"
                 className="inline-flex items-center rounded-full bg-ink px-6 py-3.5 text-[13.5px] font-medium text-snow transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                See the journeys
+                See upcoming trips
               </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center rounded-full border border-ink/15 px-6 py-3.5 text-[13.5px] font-medium text-ink transition hover:bg-ink/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                Write to Krish
+                Plan a trip
               </Link>
             </div>
           </Reveal>
         </div>
       </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
+    </SiteLayout>
   );
 }

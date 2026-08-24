@@ -130,6 +130,16 @@ export type GalleryImageRecord = {
   sort_order: number;
 };
 
+/** Per-trip photos managed under Studio → Trips → Gallery for journey. */
+export type JourneyImageRecord = {
+  id: string;
+  journey_id: string;
+  url: string;
+  caption: string | null;
+  alt_text: string | null;
+  sort_order: number;
+};
+
 export type AtlasRegionRecord = {
   id: string;
   code: string;
@@ -237,6 +247,7 @@ export type PublicContent = {
   hosts: HostRecord[];
   batches: TripBatchRecord[];
   batchHosts: TripBatchHostRecord[];
+  journeyImages: JourneyImageRecord[];
 };
 
 export const EMPTY_CONTENT: PublicContent = {
@@ -256,6 +267,7 @@ export const EMPTY_CONTENT: PublicContent = {
   hosts: [],
   batches: [],
   batchHosts: [],
+  journeyImages: [],
 };
 
 /** Find a page section by page + key. */

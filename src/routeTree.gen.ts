@@ -9,65 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UpcomingTripsRouteImport } from './routes/upcoming-trips'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as McpRouteImport } from './routes/mcp'
-import { Route as JourneysRouteImport } from './routes/journeys'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AtlasRouteImport } from './routes/atlas'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as TripSlugRouteImport } from './routes/trip/$slug'
-import { Route as AdminSiteRouteImport } from './routes/admin/site'
-import { Route as AdminPagesRouteImport } from './routes/admin/pages'
-import { Route as AdminMediaRouteImport } from './routes/admin/media'
-import { Route as AdminJourneysRouteImport } from './routes/admin/journeys'
-import { Route as AdminHostsRouteImport } from './routes/admin/hosts'
-import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
-import { Route as AdminDesignRouteImport } from './routes/admin/design'
-import { Route as AdminBatchesRouteImport } from './routes/admin/batches'
-import { Route as AdminAtlasRouteImport } from './routes/admin/atlas'
-import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as AtlasRouteImport } from './routes/atlas'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as JourneysRouteImport } from './routes/journeys'
+import { Route as McpRouteImport } from './routes/mcp'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as UpcomingTripsRouteImport } from './routes/upcoming-trips'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAtlasRouteImport } from './routes/admin/atlas'
+import { Route as AdminBatchesRouteImport } from './routes/admin/batches'
+import { Route as AdminDesignRouteImport } from './routes/admin/design'
+import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
+import { Route as AdminHostsRouteImport } from './routes/admin/hosts'
+import { Route as AdminJourneysRouteImport } from './routes/admin/journeys'
+import { Route as AdminMediaRouteImport } from './routes/admin/media'
+import { Route as AdminPagesRouteImport } from './routes/admin/pages'
+import { Route as AdminSiteRouteImport } from './routes/admin/site'
+import { Route as IndiaTripsIndexRouteImport } from './routes/india-trips/index'
+import { Route as IndiaTripsSlugRouteImport } from './routes/india-trips/$slug'
+import { Route as InternationalTripsIndexRouteImport } from './routes/international-trips/index'
+import { Route as InternationalTripsSlugRouteImport } from './routes/international-trips/$slug'
+import { Route as TripSlugRouteImport } from './routes/trip/$slug'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
-const UpcomingTripsRoute = UpcomingTripsRouteImport.update({
-  id: '/upcoming-trips',
-  path: '/upcoming-trips',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const McpRoute = McpRouteImport.update({
-  id: '/mcp',
-  path: '/mcp',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JourneysRoute = JourneysRouteImport.update({
-  id: '/journeys',
-  path: '/journeys',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AtlasRoute = AtlasRouteImport.update({
-  id: '/atlas',
-  path: '/atlas',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -80,59 +54,56 @@ const AdminRouteRoute = AdminRouteRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AtlasRoute = AtlasRouteImport.update({
+  id: '/atlas',
+  path: '/atlas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneysRoute = JourneysRouteImport.update({
+  id: '/journeys',
+  path: '/journeys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpcomingTripsRoute = UpcomingTripsRouteImport.update({
+  id: '/upcoming-trips',
+  path: '/upcoming-trips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Char91DotmcpChar93ListToolsRoute =
+  Char91DotmcpChar93ListToolsRouteImport.update({
+    id: '/.mcp/list-tools',
+    path: '/.mcp/list-tools',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const TripSlugRoute = TripSlugRouteImport.update({
-  id: '/trip/$slug',
-  path: '/trip/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSiteRoute = AdminSiteRouteImport.update({
-  id: '/site',
-  path: '/site',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminPagesRoute = AdminPagesRouteImport.update({
-  id: '/pages',
-  path: '/pages',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminMediaRoute = AdminMediaRouteImport.update({
-  id: '/media',
-  path: '/media',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminJourneysRoute = AdminJourneysRouteImport.update({
-  id: '/journeys',
-  path: '/journeys',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminHostsRoute = AdminHostsRouteImport.update({
-  id: '/hosts',
-  path: '/hosts',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminGalleryRoute = AdminGalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminDesignRoute = AdminDesignRouteImport.update({
-  id: '/design',
-  path: '/design',
-  getParentRoute: () => AdminRouteRoute,
-} as any)
-const AdminBatchesRoute = AdminBatchesRouteImport.update({
-  id: '/batches',
-  path: '/batches',
   getParentRoute: () => AdminRouteRoute,
 } as any)
 const AdminAtlasRoute = AdminAtlasRouteImport.update({
@@ -140,18 +111,71 @@ const AdminAtlasRoute = AdminAtlasRouteImport.update({
   path: '/atlas',
   getParentRoute: () => AdminRouteRoute,
 } as any)
-const Char91DotwellKnownChar93OauthProtectedResourceRoute =
-  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
-    id: '/.well-known/oauth-protected-resource',
-    path: '/.well-known/oauth-protected-resource',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char91DotmcpChar93ListToolsRoute =
-  Char91DotmcpChar93ListToolsRouteImport.update({
-    id: '/.mcp/list-tools',
-    path: '/.mcp/list-tools',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const AdminBatchesRoute = AdminBatchesRouteImport.update({
+  id: '/batches',
+  path: '/batches',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminDesignRoute = AdminDesignRouteImport.update({
+  id: '/design',
+  path: '/design',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminHostsRoute = AdminHostsRouteImport.update({
+  id: '/hosts',
+  path: '/hosts',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminJourneysRoute = AdminJourneysRouteImport.update({
+  id: '/journeys',
+  path: '/journeys',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminSiteRoute = AdminSiteRouteImport.update({
+  id: '/site',
+  path: '/site',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const IndiaTripsIndexRoute = IndiaTripsIndexRouteImport.update({
+  id: '/india-trips/',
+  path: '/india-trips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndiaTripsSlugRoute = IndiaTripsSlugRouteImport.update({
+  id: '/india-trips/$slug',
+  path: '/india-trips/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternationalTripsIndexRoute = InternationalTripsIndexRouteImport.update({
+  id: '/international-trips/',
+  path: '/international-trips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternationalTripsSlugRoute = InternationalTripsSlugRouteImport.update({
+  id: '/international-trips/$slug',
+  path: '/international-trips/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TripSlugRoute = TripSlugRouteImport.update({
+  id: '/trip/$slug',
+  path: '/trip/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char91DotmcpChar93InvokeToolToolRoute =
   Char91DotmcpChar93InvokeToolToolRouteImport.update({
     id: '/.mcp/invoke-tool/$tool',
@@ -186,8 +210,12 @@ export interface FileRoutesByFullPath {
   '/admin/media': typeof AdminMediaRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/site': typeof AdminSiteRoute
+  '/india-trips/$slug': typeof IndiaTripsSlugRoute
+  '/international-trips/$slug': typeof InternationalTripsSlugRoute
   '/trip/$slug': typeof TripSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/india-trips/': typeof IndiaTripsIndexRoute
+  '/international-trips/': typeof InternationalTripsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
@@ -212,8 +240,12 @@ export interface FileRoutesByTo {
   '/admin/media': typeof AdminMediaRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/site': typeof AdminSiteRoute
+  '/india-trips/$slug': typeof IndiaTripsSlugRoute
+  '/international-trips/$slug': typeof InternationalTripsSlugRoute
   '/trip/$slug': typeof TripSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/india-trips': typeof IndiaTripsIndexRoute
+  '/international-trips': typeof InternationalTripsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
@@ -240,8 +272,12 @@ export interface FileRoutesById {
   '/admin/media': typeof AdminMediaRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/site': typeof AdminSiteRoute
+  '/india-trips/$slug': typeof IndiaTripsSlugRoute
+  '/international-trips/$slug': typeof InternationalTripsSlugRoute
   '/trip/$slug': typeof TripSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/india-trips/': typeof IndiaTripsIndexRoute
+  '/international-trips/': typeof InternationalTripsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
@@ -269,8 +305,12 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/pages'
     | '/admin/site'
+    | '/india-trips/$slug'
+    | '/international-trips/$slug'
     | '/trip/$slug'
     | '/admin/'
+    | '/india-trips/'
+    | '/international-trips/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
@@ -295,8 +335,12 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/pages'
     | '/admin/site'
+    | '/india-trips/$slug'
+    | '/international-trips/$slug'
     | '/trip/$slug'
     | '/admin'
+    | '/india-trips'
+    | '/international-trips'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/media/$'
   id:
@@ -322,8 +366,12 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/pages'
     | '/admin/site'
+    | '/india-trips/$slug'
+    | '/international-trips/$slug'
     | '/trip/$slug'
     | '/admin/'
+    | '/india-trips/'
+    | '/international-trips/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/media/$'
   fileRoutesById: FileRoutesById
@@ -341,60 +389,22 @@ export interface RootRouteChildren {
   UpcomingTripsRoute: typeof UpcomingTripsRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  IndiaTripsSlugRoute: typeof IndiaTripsSlugRoute
+  InternationalTripsSlugRoute: typeof InternationalTripsSlugRoute
   TripSlugRoute: typeof TripSlugRoute
+  IndiaTripsIndexRoute: typeof IndiaTripsIndexRoute
+  InternationalTripsIndexRoute: typeof InternationalTripsIndexRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/upcoming-trips': {
-      id: '/upcoming-trips'
-      path: '/upcoming-trips'
-      fullPath: '/upcoming-trips'
-      preLoaderRoute: typeof UpcomingTripsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mcp': {
-      id: '/mcp'
-      path: '/mcp'
-      fullPath: '/mcp'
-      preLoaderRoute: typeof McpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journeys': {
-      id: '/journeys'
-      path: '/journeys'
-      fullPath: '/journeys'
-      preLoaderRoute: typeof JourneysRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/atlas': {
-      id: '/atlas'
-      path: '/atlas'
-      fullPath: '/atlas'
-      preLoaderRoute: typeof AtlasRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -411,11 +421,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/atlas': {
+      id: '/atlas'
+      path: '/atlas'
+      fullPath: '/atlas'
+      preLoaderRoute: typeof AtlasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journeys': {
+      id: '/journeys'
+      path: '/journeys'
+      fullPath: '/journeys'
+      preLoaderRoute: typeof JourneysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upcoming-trips': {
+      id: '/upcoming-trips'
+      path: '/upcoming-trips'
+      fullPath: '/upcoming-trips'
+      preLoaderRoute: typeof UpcomingTripsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/list-tools': {
+      id: '/.mcp/list-tools'
+      path: '/.mcp/list-tools'
+      fullPath: '/.mcp/list-tools'
+      preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -425,60 +491,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/trip/$slug': {
-      id: '/trip/$slug'
-      path: '/trip/$slug'
-      fullPath: '/trip/$slug'
-      preLoaderRoute: typeof TripSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/site': {
-      id: '/admin/site'
-      path: '/site'
-      fullPath: '/admin/site'
-      preLoaderRoute: typeof AdminSiteRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/pages': {
-      id: '/admin/pages'
-      path: '/pages'
-      fullPath: '/admin/pages'
-      preLoaderRoute: typeof AdminPagesRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/media': {
-      id: '/admin/media'
-      path: '/media'
-      fullPath: '/admin/media'
-      preLoaderRoute: typeof AdminMediaRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/journeys': {
-      id: '/admin/journeys'
-      path: '/journeys'
-      fullPath: '/admin/journeys'
-      preLoaderRoute: typeof AdminJourneysRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/hosts': {
-      id: '/admin/hosts'
-      path: '/hosts'
-      fullPath: '/admin/hosts'
-      preLoaderRoute: typeof AdminHostsRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/gallery': {
-      id: '/admin/gallery'
-      path: '/gallery'
-      fullPath: '/admin/gallery'
-      preLoaderRoute: typeof AdminGalleryRouteImport
-      parentRoute: typeof AdminRouteRoute
-    }
-    '/admin/design': {
-      id: '/admin/design'
-      path: '/design'
-      fullPath: '/admin/design'
-      preLoaderRoute: typeof AdminDesignRouteImport
+    '/admin/atlas': {
+      id: '/admin/atlas'
+      path: '/atlas'
+      fullPath: '/admin/atlas'
+      preLoaderRoute: typeof AdminAtlasRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/batches': {
@@ -488,25 +505,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBatchesRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/admin/atlas': {
-      id: '/admin/atlas'
-      path: '/atlas'
-      fullPath: '/admin/atlas'
-      preLoaderRoute: typeof AdminAtlasRouteImport
+    '/admin/design': {
+      id: '/admin/design'
+      path: '/design'
+      fullPath: '/admin/design'
+      preLoaderRoute: typeof AdminDesignRouteImport
       parentRoute: typeof AdminRouteRoute
     }
-    '/.well-known/oauth-protected-resource': {
-      id: '/.well-known/oauth-protected-resource'
-      path: '/.well-known/oauth-protected-resource'
-      fullPath: '/.well-known/oauth-protected-resource'
-      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/hosts': {
+      id: '/admin/hosts'
+      path: '/hosts'
+      fullPath: '/admin/hosts'
+      preLoaderRoute: typeof AdminHostsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/journeys': {
+      id: '/admin/journeys'
+      path: '/journeys'
+      fullPath: '/admin/journeys'
+      preLoaderRoute: typeof AdminJourneysRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/site': {
+      id: '/admin/site'
+      path: '/site'
+      fullPath: '/admin/site'
+      preLoaderRoute: typeof AdminSiteRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/india-trips/': {
+      id: '/india-trips/'
+      path: '/india-trips'
+      fullPath: '/india-trips/'
+      preLoaderRoute: typeof IndiaTripsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/.mcp/list-tools': {
-      id: '/.mcp/list-tools'
-      path: '/.mcp/list-tools'
-      fullPath: '/.mcp/list-tools'
-      preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
+    '/india-trips/$slug': {
+      id: '/india-trips/$slug'
+      path: '/india-trips/$slug'
+      fullPath: '/india-trips/$slug'
+      preLoaderRoute: typeof IndiaTripsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/international-trips/': {
+      id: '/international-trips/'
+      path: '/international-trips'
+      fullPath: '/international-trips/'
+      preLoaderRoute: typeof InternationalTripsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/international-trips/$slug': {
+      id: '/international-trips/$slug'
+      path: '/international-trips/$slug'
+      fullPath: '/international-trips/$slug'
+      preLoaderRoute: typeof InternationalTripsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trip/$slug': {
+      id: '/trip/$slug'
+      path: '/trip/$slug'
+      fullPath: '/trip/$slug'
+      preLoaderRoute: typeof TripSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.mcp/invoke-tool/$tool': {
@@ -570,7 +650,11 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  IndiaTripsSlugRoute: IndiaTripsSlugRoute,
+  InternationalTripsSlugRoute: InternationalTripsSlugRoute,
   TripSlugRoute: TripSlugRoute,
+  IndiaTripsIndexRoute: IndiaTripsIndexRoute,
+  InternationalTripsIndexRoute: InternationalTripsIndexRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }

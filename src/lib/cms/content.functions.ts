@@ -53,6 +53,7 @@ export const getPublicContent = createServerFn({ method: "GET" }).handler(
         hosts,
         batches,
         batchHosts,
+        journeyImages,
       ] = await Promise.all([
         supabase.from("site_settings").select("*").eq("id", "default").maybeSingle(),
         supabase.from("design_settings").select("*").eq("id", "default").maybeSingle(),
@@ -69,6 +70,7 @@ export const getPublicContent = createServerFn({ method: "GET" }).handler(
         supabase.from("hosts").select("*").order("sort_order"),
         supabase.from("trip_batches").select("*").order("start_date"),
         supabase.from("trip_batch_hosts").select("*"),
+        supabase.from("journey_images").select("*").order("sort_order"),
       ]);
 
       return {
@@ -88,6 +90,7 @@ export const getPublicContent = createServerFn({ method: "GET" }).handler(
         hosts: (hosts.data ?? []) as PublicContent["hosts"],
         batches: (batches.data ?? []) as PublicContent["batches"],
         batchHosts: (batchHosts.data ?? []) as PublicContent["batchHosts"],
+        journeyImages: (journeyImages.data ?? []) as PublicContent["journeyImages"],
       };
     } catch (error) {
       console.error("[cms] public content read failed", error);
