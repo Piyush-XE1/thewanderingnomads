@@ -417,7 +417,7 @@ values ('default',
  'Founder-led expeditions across India''s most breathtaking destinations—crafted with trust, community, and unforgettable experiences.',
  'travel, india, himalaya, expeditions, treks, founder-led travel',
  '© The Wandering Nomads. All rights reserved.',
- 'hello@thewanderingnomads.in', '+91 00000 00000');
+ 'hello@thewanderingnomads.in', '+91 96212 1733');
 
 insert into public.design_settings (id) values ('default');
 insert into public.about_content (id, biography, secondary_identity)
@@ -428,12 +428,12 @@ values ('default',
 insert into public.social_links (platform, label, handle, url, sort_order) values
  ('instagram','Instagram — Founder','@wanderwithkrishh','https://instagram.com/wanderwithkrishh',1),
  ('instagram','Instagram — The Wandering Nomads','@thewanderingnomads.in','https://instagram.com/thewanderingnomads.in',2),
- ('whatsapp','WhatsApp',null,'https://wa.me/910000000000',3),
+ ('whatsapp','WhatsApp',null,'https://wa.me/91962121733',3),
  ('youtube','YouTube',null,'https://youtube.com/@thewanderingnomads',4),
  ('email','Email',null,'mailto:hello@thewanderingnomads.in',5);
 
 insert into public.page_sections (page, section_key, heading, subtitle, description, cta_label, cta_href, secondary_cta_label, secondary_cta_href, sort_order) values
- ('home','hero','Wander far. Come back changed.','The Wandering Nomads · By KRISH','Founder-led expeditions across India''s most breathtaking landscapes — small groups, honest storytelling, and a community built on trust.','Explore Journeys','/journeys','Explore Atlas Map','/atlas',1),
+ ('home','hero','Wander far. Come back changed.','The Wandering Nomads · By KRISH','Founder-led expeditions across India''s most breathtaking landscapes — small groups, honest storytelling, and a community built on trust.','See upcoming trips','/upcoming-trips','Explore India trips','/india-trips',1),
  ('home','founder','The founder''s trail','Story','From a first solo bus to Manali to 24 states explored — every expedition is designed from lived experience.',null,null,null,null,2),
  ('home','journeys','Featured journeys','Expeditions','Handpicked routes, led personally, capped at small group sizes.','View all journeys','/journeys',null,null,3),
  ('home','atlas','The Travel Atlas','Map','A living map of every state and country explored, with photographs and field notes.','Explore Atlas Map','/atlas',null,null,4),

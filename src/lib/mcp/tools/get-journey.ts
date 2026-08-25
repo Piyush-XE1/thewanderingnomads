@@ -1,21 +1,25 @@
 import { defineTool } from "@lovable.dev/mcp-js";
 import { z } from "zod";
-import { journeys } from "./list-journeys";
+import { loadJourneySummaries } from "./list-journeys";
 
 export default defineTool({
   name: "get_journey",
   title: "Get journey details",
   description:
-    "Fetch full details for a single featured journey by its slug (e.g. 'kashmir', 'spiti', 'jibhi', 'valley-of-flowers', 'rajasthan', 'rishikesh').",
+    "Fetch full details for a single current journey by its slug (e.g. 'chandratal-manali-kasol', 'valley-of-flowers', 'meghalaya', 'dev-deepawali-varanasi').",
   inputSchema: {
-    slug: z.string().min(1).describe("Journey slug, lowercase and hyphenated (e.g. 'kashmir')."),
+    slug: z
+      .string()
+      .min(1)
+      .describe("Journey slug, lowercase and hyphenated (e.g. 'valley-of-flowers')."),
   },
   annotations: {
     readOnlyHint: true,
     idempotentHint: true,
     openWorldHint: false,
   },
-  handler: ({ slug }) => {
+  handler: async ({ slug }) => {
+    const journeys = await loadJourneySummaries();
     const journey = journeys.find((j) => j.slug === slug.toLowerCase().trim());
     if (!journey) {
       return {

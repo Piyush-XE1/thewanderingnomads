@@ -15,7 +15,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { useContent, useSection } from "@/lib/cms/useContent";
 import { collectDestinations, destinationForJourney } from "@/lib/destinations";
-import { parsePrice, resolveJourneys, waLink } from "@/lib/trips";
+import { parsePrice, resolveBatches, resolveJourneys, waLink } from "@/lib/trips";
 import { CONTACT_EMAIL, PHONE_DISPLAY, WHATSAPP_NUMBER } from "@/lib/site";
 
 import heroImg from "@/assets/hero-himalaya.jpg";
@@ -135,7 +135,11 @@ function Hero() {
   const overlay = useTransform(scrollYProgress, [0, 1], [0.35, 0.7]);
 
   return (
-    <section id="hero" ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-ink">
+    <section
+      id="hero"
+      ref={ref}
+      className="relative h-[100svh] w-full overflow-hidden bg-neutral-950"
+    >
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <img
           src={copy?.image_url ?? heroImg}
@@ -199,17 +203,17 @@ function Hero() {
           className="mt-10 flex flex-wrap items-center gap-3"
         >
           <Link
-            to="/upcoming-trips"
+            to={(copy?.cta_href ?? "/upcoming-trips") as "/upcoming-trips"}
             className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
           >
             {copy?.cta_label ?? "See upcoming trips"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </Link>
           <Link
-            to="/india-trips"
+            to={(copy?.secondary_cta_href ?? "/india-trips") as "/india-trips"}
             className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-[13.5px] font-medium text-white backdrop-blur-md transition hover:bg-white/15"
           >
-            {copy?.secondary_cta_label ?? "Explore India"}
+            {copy?.secondary_cta_label ?? "Explore India trips"}
           </Link>
           <a
             href={waLink("Hi The Wandering Nomads! I'd like to plan a trip.")}
@@ -244,8 +248,9 @@ function Hero() {
 type PriceFilter = "all" | "under20" | "20to50" | "over50";
 
 function Upcoming() {
-  const { journeys: cmsJourneys, batches, batchHosts, hosts } = useContent();
+  const { journeys: cmsJourneys, batches: cmsBatches, batchHosts, hosts } = useContent();
   const journeys = resolveJourneys(cmsJourneys);
+  const batches = resolveBatches(cmsBatches, journeys);
   const [price, setPrice] = useState<PriceFilter>("all");
   const [dest, setDest] = useState("all");
 
@@ -527,7 +532,7 @@ function ContactLine({ label, v, href }: { label: string; v: string; href?: stri
   const inner = <span className="text-snow">{v}</span>;
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.18em] text-snow/50">{label}</p>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-snow/70">{label}</p>
       <p className="mt-2">
         {href ? (
           <a
@@ -542,19 +547,6 @@ function ContactLine({ label, v, href }: { label: string; v: string; href?: stri
           inner
         )}
       </p>
-    </div>
-  );
-}
-
-function Field({ name, label, placeholder }: { name: string; label: string; placeholder: string }) {
-  return (
-    <div>
-      <label className="text-[11px] uppercase tracking-[0.18em] text-snow/50">{label}</label>
-      <input
-        name={name}
-        placeholder={placeholder}
-        className="mt-2 w-full rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[14.5px] text-snow placeholder:text-snow/40 outline-none transition focus:border-white/40 focus:bg-white/10"
-      />
     </div>
   );
 }
@@ -574,7 +566,7 @@ function PromoBanner() {
             <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
               <div>
                 <p className="eyebrow text-snow/60">Need help deciding?</p>
-                <h2 className="display mt-3 text-3xl sm:text-4xl">
+                <h2 className="display mt-3 text-3xl text-snow sm:text-4xl">
                   Talk to a travel host — not a call centre.
                 </h2>
               </div>
@@ -582,7 +574,7 @@ function PromoBanner() {
                 href={waLink("Hi The Wandering Nomads! I need help picking a trip.")}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-ink"
+                className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
               >
                 Request a callback
               </a>

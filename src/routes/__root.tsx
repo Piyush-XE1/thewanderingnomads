@@ -161,6 +161,7 @@ function RootComponent() {
   // never receive the real site's markup — no flash, no overlay.
   const [bypassed, setBypassed] = useState(false);
   const [launchOverride, setLaunchOverride] = useState<"pre_launch" | "live" | null>(null);
+  const [launchAt, setLaunchAt] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -182,7 +183,9 @@ function RootComponent() {
     let active = true;
     getLaunchState()
       .then((state) => {
-        if (active && state.launch_status) setLaunchOverride(state.launch_status);
+        if (!active) return;
+        if (state.launch_status) setLaunchOverride(state.launch_status);
+        if (state.launch_at) setLaunchAt(state.launch_at);
       })
       .catch(() => {
         /* keep the scheduled behaviour */
@@ -194,10 +197,12 @@ function RootComponent() {
 
   // The dashboard is a private surface and is never covered by the countdown.
   const isStudio = pathname.startsWith("/admin");
-  const gated =
-    !isStudio &&
-    !bypassed &&
-    (launchOverride === null ? isPreLaunch() : launchOverride === "pre_launch");
+  // "live" from the Studio opens the site immediately. "pre_launch" (or no CMS
+  // row) respects the scheduled launch time — so a stale 'pre_launch' flag can
+  // never keep the site closed after the launch moment has actually passed.
+  const scheduledAt = launchAt ? Date.parse(launchAt) : Number.NaN;
+  const beforeLaunch = Number.isFinite(scheduledAt) ? Date.now() < scheduledAt : isPreLaunch();
+  const gated = !isStudio && !bypassed && launchOverride !== "live" && beforeLaunch;
 
   if (gated) {
     return <LaunchScreen onLaunch={() => setBypassed(true)} />;

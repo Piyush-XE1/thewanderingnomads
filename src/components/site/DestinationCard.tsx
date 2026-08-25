@@ -45,7 +45,7 @@ export function DestinationCard({ dest }: { dest: DestinationView }) {
         </div>
 
         <div>
-          <h3 className="display text-3xl leading-[0.95] sm:text-[34px]">{dest.name}</h3>
+          <h3 className="display text-3xl leading-[0.95] text-white sm:text-[34px]">{dest.name}</h3>
           <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-white/75">
             {dest.blurb}
           </p>

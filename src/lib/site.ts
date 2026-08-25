@@ -7,10 +7,10 @@
  */
 
 /** WhatsApp number, digits only (international format). */
-export const WHATSAPP_NUMBER = "919005215255";
+export const WHATSAPP_NUMBER = "91962121733";
 
 /** Phone number as shown to visitors. */
-export const PHONE_DISPLAY = "+91 90052 15255";
+export const PHONE_DISPLAY = "+91 96212 1733";
 
 /** Public enquiry email. */
 export const CONTACT_EMAIL = "wanderwithkrish@gmail.com";

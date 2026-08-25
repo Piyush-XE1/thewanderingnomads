@@ -50,13 +50,13 @@ function InternationalTripsPage() {
   return (
     <SiteLayout>
       <main>
-        <section className="relative overflow-hidden bg-ink pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <section className="relative overflow-hidden bg-neutral-950 pt-32 pb-20 sm:pt-40 sm:pb-28">
           <img
             src={heroImg}
             alt=""
             className="absolute inset-0 h-full w-full object-cover opacity-45"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
           <div className="relative mx-auto max-w-6xl px-6">
             <Reveal>
               <p className="eyebrow text-white/65">World adventures</p>
