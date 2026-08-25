@@ -12,6 +12,7 @@ import {
   findJourney,
   formatBatchDates,
   hostsForBatch,
+  resolveBatches,
   resolveJourneys,
   tripEnquiryMessage,
   upcomingBatch,
@@ -23,6 +24,7 @@ import {
   destinationForJourney,
   imagesForJourney,
 } from "@/lib/destinations";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export const Route = createFileRoute("/trip/$slug")({
   head: ({ params }) => ({
@@ -47,8 +49,11 @@ function titleFromSlug(slug: string) {
 
 function TripDetailPage() {
   const { slug } = Route.useParams();
-  const { journeys, batches, batchHosts, hosts, gallery, journeyImages } = useContent();
-  const trip = findJourney(journeys, slug);
+  const content = useContent();
+  const journeys = resolveJourneys(content.journeys);
+  const batches = resolveBatches(content.batches, journeys);
+  const { batchHosts, hosts, gallery, journeyImages } = content;
+  const trip = findJourney(content.journeys, slug);
 
   useEffect(() => {
     if (trip) document.title = `${trip.title} — The Wandering Nomads`;
@@ -80,7 +85,7 @@ function TripDetailPage() {
   const next = upcomingBatch(tripBatches);
   const dest = destinationForJourney(trip);
   const photos = imagesForJourney(trip, journeyImages, gallery);
-  const related = resolveJourneys(journeys)
+  const related = journeys
     .filter((j) => j.id !== trip.id)
     .sort((a, b) => {
       const aHit = destinationForJourney(a)?.slug === dest?.slug ? 0 : 1;
@@ -307,8 +312,9 @@ function TripDetailPage() {
                   href={book}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 flex items-center justify-center rounded-full bg-ink px-5 py-3.5 text-[13.5px] font-medium text-snow transition hover:opacity-90"
+                  className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-6 py-4 text-[15px] font-semibold text-snow shadow-lift transition hover:opacity-90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
                 >
+                  <WhatsAppIcon className="h-4.5 w-4.5 shrink-0" />
                   Book now — WhatsApp
                 </a>
                 {trip.booking_url ? (
@@ -316,13 +322,15 @@ function TripDetailPage() {
                     href={trip.booking_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-2 flex items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-[13px] font-medium text-ink"
+                    className="mt-2.5 flex w-full items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-[13px] font-medium text-ink transition hover:bg-ink/5"
                   >
                     {trip.cta_label ?? "More details"}
                   </a>
                 ) : null}
                 <p className="mt-4 text-center text-[12px] text-muted-foreground">
-                  A real person. Same day.
+                  {next?.seats_remaining != null
+                    ? `Only ${next.seats_remaining} seats left on ${formatBatchDates(next)}.`
+                    : "A real person. Same day."}
                 </p>
               </div>
             </aside>
@@ -366,8 +374,9 @@ function TripDetailPage() {
             href={book}
             target="_blank"
             rel="noreferrer"
-            className="shrink-0 rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-snow"
+            className="flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3 text-[14.5px] font-semibold text-snow shadow-lift transition hover:opacity-90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
+            <WhatsAppIcon className="h-4 w-4 shrink-0" />
             Book now
           </a>
         </div>

@@ -122,9 +122,24 @@ export async function getSingleton(table: AdminTable) {
   return (data ?? {}) as Row;
 }
 
+/**
+ * PostgREST returns success with zero affected rows when row-level security
+ * filters the target rows out (or the id no longer exists). Without checking
+ * the returned rows the UI would toast "Saved — live on the website" while
+ * the database stayed untouched — the exact symptom reported as "CMS changes
+ * save but never appear". Every mutation below therefore selects the affected
+ * rows and throws when nothing was actually written.
+ */
+const NOT_PERSISTED =
+  "The save did not reach the database (0 rows updated). Sign out and back in with the owner account, then try again.";
+
 export async function saveSingleton(table: AdminTable, values: Row) {
-  const { error } = await db.from(table).upsert({ ...values, id: "default" }, { onConflict: "id" });
+  const { data, error } = await db
+    .from(table)
+    .upsert({ ...values, id: "default" }, { onConflict: "id" })
+    .select("id");
   if (error) throw error;
+  if (!Array.isArray(data) || data.length === 0) throw new Error(NOT_PERSISTED);
   await logAudit({ entity: table, entityId: "default", action: "update" });
 }
 
@@ -136,14 +151,16 @@ export async function insertRow(table: AdminTable, values: Row) {
 }
 
 export async function updateRow(table: AdminTable, id: string, values: Row) {
-  const { error } = await db.from(table).update(values).eq("id", id);
+  const { data, error } = await db.from(table).update(values).eq("id", id).select("id");
   if (error) throw error;
+  if (!Array.isArray(data) || data.length === 0) throw new Error(NOT_PERSISTED);
   await logAudit({ entity: table, entityId: id, action: "update" });
 }
 
 export async function deleteRow(table: AdminTable, id: string, summary?: string) {
-  const { error } = await db.from(table).delete().eq("id", id);
+  const { data, error } = await db.from(table).delete().eq("id", id).select("id");
   if (error) throw error;
+  if (!Array.isArray(data) || data.length === 0) throw new Error(NOT_PERSISTED);
   await logAudit({ entity: table, entityId: id, action: "delete", summary });
 }
 
@@ -152,11 +169,15 @@ export async function reorderRows(table: AdminTable, orderedIds: string[]) {
     db
       .from(table)
       .update({ sort_order: index + 1 })
-      .eq("id", id),
+      .eq("id", id)
+      .select("id"),
   );
   const results = await Promise.all(updates);
   const firstError = results.find((r) => r.error)?.error;
   if (firstError) throw firstError;
+  if (results.some((r) => !Array.isArray(r.data) || r.data.length === 0)) {
+    throw new Error(NOT_PERSISTED);
+  }
   await logAudit({ entity: table, entityId: "multiple", action: "reorder" });
 }
 

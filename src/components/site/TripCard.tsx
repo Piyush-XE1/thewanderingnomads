@@ -73,7 +73,7 @@ export function TripCard({
           <p className="text-[11px] uppercase tracking-[0.18em] text-white/70">
             {trip.destination}
           </p>
-          <h3 className="display mt-1 text-3xl leading-[0.95]">{trip.title}</h3>
+          <h3 className="display mt-1 text-3xl leading-[0.95] text-white">{trip.title}</h3>
         </div>
       </div>
 

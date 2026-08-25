@@ -13,13 +13,14 @@ import {
   startingPriceOf,
   type Region,
 } from "@/lib/destinations";
-import { resolveJourneys, waLink } from "@/lib/trips";
+import { resolveBatches, resolveJourneys, waLink } from "@/lib/trips";
 
 import heroImg from "@/assets/hero-himalaya.jpg";
 
 export function DestinationPage({ slug, region }: { slug: string; region: Region }) {
-  const { journeys: cmsJourneys, batches, batchHosts, hosts } = useContent();
+  const { journeys: cmsJourneys, batches: cmsBatches, batchHosts, hosts } = useContent();
   const journeys = resolveJourneys(cmsJourneys);
+  const batches = resolveBatches(cmsBatches, journeys);
   const dest = getDestination(slug);
   const trips = dest ? journeysForDestination(dest, journeys) : [];
   const { label: starting } = startingPriceOf(trips);
@@ -60,13 +61,13 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
   return (
     <SiteLayout>
       <main>
-        <section className="relative overflow-hidden bg-ink pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <section className="relative overflow-hidden bg-neutral-950 pt-32 pb-20 sm:pt-40 sm:pb-28">
           <img
             src={cover}
             alt=""
             className="absolute inset-0 h-full w-full object-cover opacity-55"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25" />
           <div className="relative mx-auto max-w-6xl px-6">
             <Reveal>
               <div className="flex flex-wrap items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-white/60">
@@ -96,7 +97,7 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
                   href={enquire}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-ink"
+                  className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
                 >
                   Enquire on WhatsApp
                 </a>

@@ -67,148 +67,61 @@ export function formatRupees(value: number): string {
 }
 
 /**
- * Built-in catalogue used when the CMS has no published trips yet.
+ * Built-in catalogue used ONLY when the CMS has no published trips yet
+ * (offline preview / first deploy before the admin publishes anything).
  * Once any journey is published, listings switch over to CMS data entirely
- * so draft/demo trips never mix with the real inventory.
+ * so draft/demo trips never mix with the real inventory. Keep this list in
+ * step with the journeys seeded in supabase/migrations.
  */
 export const DEFAULT_JOURNEYS: JourneyRecord[] = [
   {
-    id: "default-kashmir",
-    slug: "kashmir",
-    destination: "Kashmir",
-    title: "Kashmir Expedition",
+    id: "default-chandratal",
+    slug: "chandratal-manali-kasol",
+    destination: "Himachal Pradesh",
+    title: "Chandratal · Manali · Kasol",
     short_description:
-      "Shikaras on Dal Lake. Nights inside Kashmiri homes. The valley the way it is actually lived.",
+      "Manali's cedar air, a star-lit night beside the Chandratal moon lake, and slow evenings by the Parvati in Kasol.",
     long_description:
-      "A slow week in the Kashmir valley — houseboats and homestays, pine ridges above Gulmarg, and evenings that belong to the people who live here. Small group, confirmed dates, every day hosted.",
-    duration: "8 days",
-    price: "₹24,999",
-    difficulty: "Easy",
-    best_season: "Apr — Oct",
+      "A 6-day Himachal loop that doesn't rush: two easy days around Manali's cafés and pine ridges, a night beside Chandratal's still water under a sky full of stars, and a decompression finish in Kasol. Small group, confirmed batch, every day hosted.",
+    duration: "6 days",
+    price: null,
+    difficulty: "Moderate",
+    best_season: "Sep — Oct",
     is_available: true,
     highlights: [
-      "Dal Lake at first light",
-      "Nights with a Kashmiri host family",
-      "Gulmarg meadows and pine trails",
-      "Wazwan shared, not plated",
+      "Chandratal moon lake (4,300 m)",
+      "Old Manali & its cafés",
+      "Parvati valley evenings in Kasol",
+      "Confirmed departure — 10 to 15 Sep",
     ],
     itinerary: [
-      {
-        day: 1,
-        title: "Arrive Srinagar",
-        description: "Houseboat check-in, lake evening, welcome circle.",
-      },
+      { day: 1, title: "Arrive Manali", description: "Meet the host, old-town walk, early night." },
       {
         day: 2,
-        title: "Old city & gardens",
-        description: "Heritage lanes, spice markets, Mughal gardens.",
+        title: "Manali, unhurried",
+        description: "Jogini falls or a pine-ridge walk, café evening.",
       },
-      { day: 3, title: "Gulmarg day", description: "Meadows, gondola option, pine-ridge walk." },
+      {
+        day: 3,
+        title: "The road to Chandratal",
+        description: "A long, beautiful drive. Camp beside the lake.",
+      },
       {
         day: 4,
-        title: "Homestay transfer",
-        description: "Village stay, kitchen stories, slow afternoon.",
+        title: "Moon lake morning",
+        description: "Sunrise at Chandratal, slow return toward Manali.",
       },
-      { day: 5, title: "Local trails", description: "Ridge walk, picnic, unhurried valley views." },
-      { day: 6, title: "Craft & cuisine", description: "Walnut wood, saffron, a proper wazwan." },
-      { day: 7, title: "Free morning", description: "Lake, last photographs, optional shikara." },
-      { day: 8, title: "Depart", description: "Airport drop. WhatsApp group stays open." },
+      { day: 5, title: "Kasol", description: "Parvati river, village walk, café time." },
+      { day: 6, title: "Depart", description: "Drop at Bhuntar. WhatsApp group stays open." },
     ],
-    travel_info: "Fly into Srinagar. We pick up from the airport on Day 1.",
-    notes: null,
+    travel_info:
+      "Reach Manali by overnight Volvo from Delhi/Chandigarh or fly into Bhuntar (KUU). We coordinate pickups in Manali on Day 1.",
+    notes:
+      "Chandratal sits at 4,300 m — Day 4 stays flexible for acclimatisation and road weather.",
     cta_label: null,
     booking_url: null,
     hero_image_url: null,
     sort_order: 0,
-  },
-  {
-    id: "default-spiti",
-    slug: "spiti",
-    destination: "Spiti",
-    title: "Spiti High-Altitude Expedition",
-    short_description:
-      "Cold desert monasteries, star-lit villages, and roads that hang from the mountain's edge.",
-    long_description:
-      "A high-altitude crossing of the Spiti valley — Key, Kaza, Chandratal if the pass is open, and nights thin enough to see the Milky Way without trying.",
-    duration: "10 days",
-    price: "₹29,999",
-    difficulty: "Moderate",
-    best_season: "Jun — Sep",
-    is_available: true,
-    highlights: [
-      "Chandratal when the pass allows",
-      "Key Monastery at dusk",
-      "Homestays in high villages",
-      "Acclimatisation built into the route",
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Arrive Manali / Shimla",
-        description: "Meet the host, kit check, early night.",
-      },
-      {
-        day: 2,
-        title: "The climb begins",
-        description: "Acclimatisation halt. Slow is the point.",
-      },
-      { day: 3, title: "Into Spiti", description: "High roads, first monastery, village stay." },
-      { day: 4, title: "Kaza", description: "Market, river, an afternoon that isn't scheduled." },
-      { day: 5, title: "Key & beyond", description: "Key Monastery at dusk if the light holds." },
-      {
-        day: 6,
-        title: "Chandratal window",
-        description: "If the pass is open. If not, a quieter lake.",
-      },
-      { day: 7, title: "High villages", description: "Homestay, kitchen stories, stars." },
-      { day: 8, title: "Buffer day", description: "Weather, rest, or a walk we didn't plan." },
-      { day: 9, title: "The road out", description: "Long transfer, last photographs." },
-      { day: 10, title: "Depart", description: "Drop at the start town. WhatsApp stays open." },
-    ],
-    travel_info: "Typically starts from Manali or Shimla depending on the season and the pass.",
-    notes: "Altitude is real. We move slower than a tourist bus on purpose.",
-    cta_label: null,
-    booking_url: null,
-    hero_image_url: null,
-    sort_order: 1,
-  },
-  {
-    id: "default-jibhi",
-    slug: "jibhi",
-    destination: "Jibhi",
-    title: "Jibhi Slow Travel",
-    short_description:
-      "Wooden houses, misty pine forests, and a small stream that never stops singing.",
-    long_description:
-      "Five unhurried days in a Himachal hamlet — cafés, pine trails, a waterfall if it has rained, and enough quiet to remember why you left the city.",
-    duration: "5 days",
-    price: "₹14,999",
-    difficulty: "Easy",
-    best_season: "Mar — Nov",
-    is_available: true,
-    highlights: [
-      "Riverside wooden stays",
-      "Jalori Pass day walk",
-      "Village kitchens",
-      "No packed itinerary",
-    ],
-    itinerary: [
-      { day: 1, title: "Arrive Jibhi", description: "Wooden stay, stream, welcome walk." },
-      {
-        day: 2,
-        title: "Jalori if the weather holds",
-        description: "Pass walk, picnic, slow descent.",
-      },
-      { day: 3, title: "Village day", description: "Kitchen, river, no packed itinerary." },
-      { day: 4, title: "A trail we like", description: "Pine canopy, optional waterfall." },
-      { day: 5, title: "Depart", description: "Transfer to Aut / Banjar." },
-    ],
-    travel_info: "Reach Aut / Banjar; we coordinate the last-mile transfer.",
-    notes: null,
-    cta_label: null,
-    booking_url: null,
-    hero_image_url: null,
-    sort_order: 2,
   },
   {
     id: "default-valley-of-flowers",
@@ -217,17 +130,17 @@ export const DEFAULT_JOURNEYS: JourneyRecord[] = [
     title: "Valley of Flowers Trek",
     short_description: "An alpine meadow that bursts into colour for only a few weeks a year.",
     long_description:
-      "A monsoon trek into the Nanda Devi biosphere — Govindghat to Ghangaria, a full day in the valley, and Hemkund if the group wants the extra climb.",
+      "A trek into the Nanda Devi biosphere — Govindghat to Ghangaria, a full day in the valley, and Hemkund Sahib if the group wants the extra climb.",
     duration: "6 days",
-    price: "₹18,999",
+    price: null,
     difficulty: "Moderate",
-    best_season: "Jul — Aug",
+    best_season: "Jul — Sep",
     is_available: true,
     highlights: [
       "Peak bloom window",
       "Ghangaria base",
       "Optional Hemkund Sahib",
-      "Small group, 6–8",
+      "Launch batch — 25 to 30 Sep",
     ],
     itinerary: [
       { day: 1, title: "Assemble", description: "Haridwar or Govindghat — confirmed on booking." },
@@ -242,75 +155,166 @@ export const DEFAULT_JOURNEYS: JourneyRecord[] = [
       { day: 6, title: "Depart", description: "Drop at the assembly point." },
     ],
     travel_info: "Assemble at Haridwar or Govindghat — confirmed on booking.",
-    notes: "Permits and monsoon weather can reshape a day. We plan slack into the itinerary.",
+    notes: "Permits and mountain weather can reshape a day. We plan slack into the itinerary.",
+    cta_label: null,
+    booking_url: null,
+    hero_image_url: null,
+    sort_order: 1,
+  },
+  {
+    id: "default-meghalaya",
+    slug: "meghalaya",
+    destination: "Meghalaya",
+    title: "Meghalaya — Cloud Country",
+    short_description: "Living-root bridges, waterfalls after rain, and Dawki's glass-clear river.",
+    long_description:
+      "Five days in the abode of clouds — Shillong's cafés, the root bridges and blue pools of Sohra, and a slow morning on the Umngot at Dawki. A launch batch, hosted personally, kept deliberately small.",
+    duration: "5 days",
+    price: null,
+    difficulty: "Moderate",
+    best_season: "Oct — Apr",
+    is_available: true,
+    highlights: [
+      "Double-decker root bridge trek",
+      "Dawki (Umngot) river morning",
+      "Sohra waterfalls & blue pools",
+      "Launch batch — 16 to 20 Oct",
+    ],
+    itinerary: [
+      { day: 1, title: "Shillong", description: "Meet the host, cafés, an easy evening." },
+      {
+        day: 2,
+        title: "Sohra (Cherrapunji)",
+        description: "Waterfalls, caves, and the first blue pools.",
+      },
+      {
+        day: 3,
+        title: "Root bridge trek",
+        description: "The double-decker bridge — steps down, smiles up.",
+      },
+      { day: 4, title: "Dawki", description: "Glass-clear river, boats, border market." },
+      { day: 5, title: "Depart", description: "Return to Shillong / Guwahati." },
+    ],
+    travel_info: "Fly into Shillong (SHL) or Guwahati (GAU); we coordinate the Shillong pickup.",
+    notes: "The root-bridge descent has ~3,500 steps. Take it slow — we do.",
+    cta_label: null,
+    booking_url: null,
+    hero_image_url: null,
+    sort_order: 2,
+  },
+  {
+    id: "default-dev-deepawali",
+    slug: "dev-deepawali-varanasi",
+    destination: "Varanasi",
+    title: "Dev Deepawali — Varanasi",
+    short_description:
+      "A million lamps on the ghats, a boat on the Ganges, and three days inside the oldest living city.",
+    long_description:
+      "Dev Deepawali is the night the ghats of Varanasi light end to end. Three hosted days — dawn boat rides, the old city's lanes and kitchens, and the festival evening watched from the river itself.",
+    duration: "3 days",
+    price: null,
+    difficulty: "Easy",
+    best_season: "Nov",
+    is_available: true,
+    highlights: [
+      "Dev Deepawali evening on the ghats",
+      "Sunrise boat ride on the Ganges",
+      "Old-city food walk",
+      "Confirmed — 23 to 25 Nov",
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrive Varanasi",
+        description: "Ghat walk, evening aarti from the river.",
+      },
+      {
+        day: 2,
+        title: "Old city",
+        description: "Sunrise boat ride, lanes, kachori and chai.",
+      },
+      {
+        day: 3,
+        title: "Dev Deepawali",
+        description: "The festival of lamps. Evening boat, late checkout next morning.",
+      },
+    ],
+    travel_info:
+      "Reach Varanasi by train (BSB) or flight (VNS); we meet you at the ghats on Day 1.",
+    notes: "Festival crowds are part of the experience — the group stays together with the host.",
     cta_label: null,
     booking_url: null,
     hero_image_url: null,
     sort_order: 3,
   },
+];
+
+/**
+ * Departures for the fallback catalogue above. Only used while the site is
+ * rendering DEFAULT_JOURNEYS (no published CMS batches yet).
+ */
+export const DEFAULT_BATCHES: TripBatchRecord[] = [
   {
-    id: "default-rajasthan",
-    slug: "rajasthan",
-    destination: "Rajasthan",
-    title: "Rajasthan Desert Route",
-    short_description:
-      "Dunes at dusk, forts at dawn, and the honesty of home-cooked thalis in between.",
-    long_description:
-      "A week across the desert state — Jaipur as a door, then forts, dunes, and kitchens that still cook for the family first.",
-    duration: "7 days",
-    price: "₹19,999",
-    difficulty: "Easy",
-    best_season: "Oct — Mar",
-    is_available: true,
-    highlights: ["Jaipur start", "Desert camp night", "Living forts", "Home-cooked thalis"],
-    itinerary: [
-      { day: 1, title: "Jaipur", description: "Meet in the city that started the brand." },
-      { day: 2, title: "The road west", description: "Forts, a long lunch, dusk in a new town." },
-      { day: 3, title: "Living forts", description: "Not a checklist — one place, properly." },
-      { day: 4, title: "Desert camp", description: "Dunes at dusk, a fire, a quieter night." },
-      { day: 5, title: "Kitchens", description: "A home-cooked thali and an unhurried morning." },
-      {
-        day: 6,
-        title: "The loop back",
-        description: "One last stop we didn't put on the brochure.",
-      },
-      { day: 7, title: "Depart Jaipur", description: "Trains and flights we can advise." },
-    ],
-    travel_info: "Trip starts in Jaipur. We can advise trains and flights.",
-    notes: null,
-    cta_label: null,
-    booking_url: null,
-    hero_image_url: null,
-    sort_order: 4,
+    id: "default-batch-chandratal",
+    trip_id: "default-chandratal",
+    start_date: "2026-09-10",
+    end_date: "2026-09-15",
+    capacity: null,
+    seats_remaining: null,
+    batch_type: "Confirmed",
+    status: "published",
+    sort_order: 0,
   },
   {
-    id: "default-rishikesh",
-    slug: "rishikesh",
-    destination: "Rishikesh",
-    title: "Rishikesh River & Ridge",
-    short_description:
-      "The Ganges at first light, mountain trails at noon, and prayer flags in every breath.",
-    long_description:
-      "A long weekend on the Ganges — aarti, an optional raft day, a ridge walk, and enough café time to pretend you might stay.",
-    duration: "4 days",
-    price: "₹9,999",
-    difficulty: "Easy",
-    best_season: "Year-round",
-    is_available: true,
-    highlights: ["Ganga aarti", "Optional rafting", "Ridge trail", "Café culture, not a checklist"],
-    itinerary: [],
-    travel_info: "Reach Rishikesh by train (Haridwar / Yog Nagari) or road from Delhi.",
-    notes: null,
-    cta_label: null,
-    booking_url: null,
-    hero_image_url: null,
-    sort_order: 5,
+    id: "default-batch-vof",
+    trip_id: "default-valley-of-flowers",
+    start_date: "2026-09-25",
+    end_date: "2026-09-30",
+    capacity: null,
+    seats_remaining: null,
+    batch_type: "Launch",
+    status: "published",
+    sort_order: 1,
+  },
+  {
+    id: "default-batch-meghalaya",
+    trip_id: "default-meghalaya",
+    start_date: "2026-10-16",
+    end_date: "2026-10-20",
+    capacity: null,
+    seats_remaining: null,
+    batch_type: "Launch",
+    status: "published",
+    sort_order: 2,
+  },
+  {
+    id: "default-batch-dev-deepawali",
+    trip_id: "default-dev-deepawali",
+    start_date: "2026-11-23",
+    end_date: "2026-11-25",
+    capacity: null,
+    seats_remaining: null,
+    batch_type: "Confirmed",
+    status: "published",
+    sort_order: 3,
   },
 ];
 
 /** CMS trips if any are published; otherwise the built-in catalogue. */
 export function resolveJourneys(cms: JourneyRecord[]): JourneyRecord[] {
   return cms.length > 0 ? cms : DEFAULT_JOURNEYS;
+}
+
+/**
+ * CMS batches normally. Only when listings have fallen back to the built-in
+ * catalogue do the built-in departures apply (they only match fallback trips).
+ */
+export function resolveBatches(
+  cms: TripBatchRecord[],
+  journeys: JourneyRecord[],
+): TripBatchRecord[] {
+  if (cms.length > 0) return cms;
+  return journeys === DEFAULT_JOURNEYS ? DEFAULT_BATCHES : cms;
 }
 
 /** Find a trip by slug, falling back to the built-in catalogue only when CMS is empty. */

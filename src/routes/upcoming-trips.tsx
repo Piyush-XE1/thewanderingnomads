@@ -7,7 +7,14 @@ import { TripCard } from "@/components/site/TripCard";
 import { HelpDeciding } from "@/components/site/HelpDeciding";
 import { useContent } from "@/lib/cms/useContent";
 import { destinationForJourney } from "@/lib/destinations";
-import { batchesForTrip, parsePrice, resolveJourneys, upcomingBatch, waLink } from "@/lib/trips";
+import {
+  batchesForTrip,
+  parsePrice,
+  resolveBatches,
+  resolveJourneys,
+  upcomingBatch,
+  waLink,
+} from "@/lib/trips";
 
 export const Route = createFileRoute("/upcoming-trips")({
   head: () => ({
@@ -42,8 +49,9 @@ const FILTERS: { id: Filter; label: string }[] = [
 ];
 
 function UpcomingTripsPage() {
-  const { journeys: cmsJourneys, batches, batchHosts, hosts } = useContent();
+  const { journeys: cmsJourneys, batches: cmsBatches, batchHosts, hosts } = useContent();
   const journeys = resolveJourneys(cmsJourneys);
+  const batches = resolveBatches(cmsBatches, journeys);
   const [filter, setFilter] = useState<Filter>("all");
   const [dest, setDest] = useState("all");
   const [query, setQuery] = useState("");

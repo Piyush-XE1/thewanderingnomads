@@ -260,18 +260,41 @@ export function getDestination(slug: string): Destination | undefined {
   return DESTINATIONS.find((d) => d.slug === slug);
 }
 
-function haystack(journey: JourneyRecord): string {
-  return `${journey.destination} ${journey.slug} ${journey.title}`.toLowerCase();
-}
-
+/**
+ * Match a trip to the destination catalogue.
+ *
+ * Weighting matters: an alias hit on the trip's explicit `destination` field
+ * ("Himachal Pradesh" → Himachal) must beat an incidental hit on the title or
+ * slug (a Himachal circuit that *visits* Chandratal is not a Spiti trip, even
+ * though "chandratal" is also a Spiti alias). Before this, matching ranked by
+ * each destination's longest alias only, so the Chandratal–Manali–Kasol trip
+ * landed on the Spiti page and its own destination page looked empty.
+ */
 export function destinationForJourney(journey: JourneyRecord): Destination | undefined {
-  const hay = haystack(journey);
+  const destField = (journey.destination ?? "").toLowerCase();
+  const rest = `${journey.slug} ${journey.title}`.toLowerCase();
+
   const scored = DESTINATIONS.map((dest) => {
-    const hit = dest.aliases.some((alias) => hay.includes(alias.toLowerCase()));
-    return { dest, hit, len: dest.aliases.reduce((m, a) => Math.max(m, a.length), 0) };
+    let weight = 0;
+    let len = 0;
+    for (const alias of dest.aliases) {
+      const a = alias.toLowerCase();
+      const name = dest.name.toLowerCase();
+      let w = 0;
+      if (destField && (destField === a || destField === name)) w = 3;
+      else if (destField && (destField.includes(a) || a.includes(destField))) w = 2;
+      else if (rest.includes(a)) w = 1;
+      if (w > 0 && w >= weight) {
+        if (w > weight || a.length > len) {
+          weight = w;
+          len = Math.max(len, a.length);
+        }
+      }
+    }
+    return { dest, weight, len };
   })
-    .filter((x) => x.hit)
-    .sort((a, b) => b.len - a.len);
+    .filter((x) => x.weight > 0)
+    .sort((a, b) => b.weight - a.weight || b.len - a.len);
   return scored[0]?.dest;
 }
 
