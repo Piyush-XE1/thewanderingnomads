@@ -118,7 +118,7 @@ function ScrollProgress() {
   return (
     <motion.div
       style={{ scaleX: scrollYProgress, transformOrigin: "0% 50%" }}
-      className="fixed inset-x-0 top-0 z-[70] h-[2px] bg-gradient-to-r from-forest via-sunrise to-river"
+      className="fixed inset-x-0 top-0 z-[70] h-[2px] bg-forest"
     />
   );
 }
@@ -204,14 +204,14 @@ function Hero() {
         >
           <Link
             to={(copy?.cta_href ?? "/upcoming-trips") as "/upcoming-trips"}
-            className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
+            className="group inline-flex items-center gap-3 rounded-lg bg-forest px-6 py-3.5 text-[13.5px] font-medium text-white transition hover:bg-forest/90 hover:shadow-[0_4px_16px_rgba(52,78,65,0.3)]"
           >
             {copy?.cta_label ?? "See upcoming trips"}
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </Link>
           <Link
             to={(copy?.secondary_cta_href ?? "/india-trips") as "/india-trips"}
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-[13.5px] font-medium text-white backdrop-blur-md transition hover:bg-white/15"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 py-3.5 text-[13.5px] font-medium text-white backdrop-blur-md transition hover:bg-white/20"
           >
             {copy?.secondary_cta_label ?? "Explore India trips"}
           </Link>
@@ -219,7 +219,7 @@ function Hero() {
             href={waLink("Hi The Wandering Nomads! I'd like to plan a trip.")}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3.5 text-[13.5px] font-medium text-white backdrop-blur-md transition hover:bg-white/15"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 py-3.5 text-[13.5px] font-medium text-white backdrop-blur-md transition hover:bg-white/20"
           >
             Plan on WhatsApp
           </a>
@@ -281,7 +281,7 @@ function Upcoming() {
   ];
 
   return (
-    <section id="upcoming" className="relative bg-background py-24 sm:py-32">
+    <section id="upcoming" className="relative bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <Reveal>
@@ -298,7 +298,7 @@ function Upcoming() {
           <Reveal delay={0.1}>
             <Link
               to="/upcoming-trips"
-              className="group inline-flex items-center gap-2 text-[13px] font-medium text-ink"
+              className="group inline-flex items-center gap-2 text-[13px] font-medium text-forest"
             >
               All upcoming trips
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -314,10 +314,10 @@ function Upcoming() {
                 setPrice(f.id);
                 if (f.id === "all") setDest("all");
               }}
-              className={`rounded-full px-4 py-2 text-[13px] font-medium transition ${
+              className={`rounded-lg px-4 py-2 text-[13px] font-medium transition ${
                 price === f.id && dest === "all"
-                  ? "bg-ink text-snow"
-                  : "hairline text-muted-foreground hover:text-ink"
+                  ? "bg-forest text-white shadow-sm"
+                  : "bg-cream text-muted-foreground hover:text-forest hover:bg-forest/5"
               }`}
             >
               {f.label}
@@ -330,8 +330,10 @@ function Upcoming() {
                 setDest(name);
                 setPrice("all");
               }}
-              className={`rounded-full px-4 py-2 text-[13px] font-medium transition ${
-                dest === name ? "bg-ink text-snow" : "hairline text-muted-foreground hover:text-ink"
+              className={`rounded-lg px-4 py-2 text-[13px] font-medium transition ${
+                dest === name
+                  ? "bg-forest text-white shadow-sm"
+                  : "bg-cream text-muted-foreground hover:text-forest hover:bg-forest/5"
               }`}
             >
               {name}
@@ -350,7 +352,7 @@ function Upcoming() {
         ) : (
           <p className="mt-12 text-sm text-muted-foreground">
             No trips in that range — try another filter, or{" "}
-            <a className="underline" href={waLink("Hi! I'd like help picking a trip.")}>
+            <a className="underline text-forest" href={waLink("Hi! I'd like help picking a trip.")}>
               ask us
             </a>
             .
@@ -381,7 +383,7 @@ function DestinationRail({
   const dests = collectDestinations(journeys, region, { includeEmpty: true }).slice(0, 8);
 
   return (
-    <section id={id} className="relative bg-snow py-24 sm:py-32 border-t border-ink/8">
+    <section id={id} className="relative bg-cream py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <Reveal>
@@ -391,7 +393,7 @@ function DestinationRail({
           <Reveal delay={0.1}>
             <Link
               to={allTo}
-              className="group inline-flex items-center gap-2 text-[13px] font-medium text-ink"
+              className="group inline-flex items-center gap-2 text-[13px] font-medium text-forest"
             >
               {allLabel}
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -441,7 +443,7 @@ function Testimonials() {
     : defaultTestimonials;
 
   return (
-    <section id="testimonials" className="relative bg-background py-24 sm:py-32">
+    <section id="testimonials" className="relative bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
           <p className="eyebrow">In their words</p>
@@ -455,13 +457,13 @@ function Testimonials() {
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <figure className="glass flex h-full flex-col rounded-[28px] p-8">
-                <span className="display text-6xl leading-none text-ink/20">&ldquo;</span>
-                <blockquote className="mt-2 text-[16px] leading-relaxed text-ink/85">
+              <figure className="flex h-full flex-col rounded-xl bg-cream border border-ink/5 p-8">
+                <span className="display text-5xl leading-none text-forest/25">&ldquo;</span>
+                <blockquote className="mt-2 text-[15px] leading-relaxed text-ink/85">
                   {t.q}
                 </blockquote>
                 <figcaption className="mt-8 flex items-center gap-3 border-t border-ink/8 pt-5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink/8 text-[12px] font-medium text-ink/60">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-forest/8 text-[12px] font-medium text-forest">
                     {t.n.charAt(0)}
                   </span>
                   <div>
@@ -482,26 +484,24 @@ function Testimonials() {
 
 function ContactCta() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-ink py-24 text-snow sm:py-32">
+    <section id="contact" className="relative overflow-hidden bg-forest py-24 text-white sm:py-32">
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-15"
         style={{
           backgroundImage: `url(${heroImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(2px)",
         }}
       />
-      <div className="absolute inset-0 bg-ink/85" />
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="grid gap-16 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <Reveal>
-              <p className="eyebrow text-snow/60">Plan a trip</p>
-              <h2 className="display mt-4 text-4xl leading-[1.02] text-snow sm:text-5xl md:text-[64px]">
+              <p className="eyebrow text-white/60">Plan a trip</p>
+              <h2 className="display mt-4 text-4xl leading-[1.02] text-white sm:text-5xl md:text-[64px]">
                 Tell us where you
                 <br />
-                <span className="italic text-snow/60">want to go.</span>
+                <span className="italic text-white/60">want to go.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -529,15 +529,15 @@ function ContactCta() {
 }
 
 function ContactLine({ label, v, href }: { label: string; v: string; href?: string }) {
-  const inner = <span className="text-snow">{v}</span>;
+  const inner = <span className="text-white">{v}</span>;
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.18em] text-snow/70">{label}</p>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-white/55">{label}</p>
       <p className="mt-2">
         {href ? (
           <a
             href={href}
-            className="border-b border-snow/20 pb-0.5 transition hover:border-snow"
+            className="border-b border-white/30 pb-0.5 transition hover:border-white"
             target="_blank"
             rel="noreferrer"
           >
@@ -553,20 +553,19 @@ function ContactLine({ label, v, href }: { label: string; v: string; href?: stri
 
 function PromoBanner() {
   return (
-    <section className="bg-background pb-4">
+    <section className="bg-white pb-4">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] bg-ink px-6 py-10 text-snow sm:px-10 sm:py-12">
+          <div className="relative overflow-hidden rounded-2xl bg-forest px-6 py-10 text-white sm:px-10 sm:py-12">
             <img
               src={heroImg}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-30"
+              className="absolute inset-0 h-full w-full object-cover opacity-15"
             />
-            <div className="absolute inset-0 bg-ink/70" />
             <div className="relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
               <div>
-                <p className="eyebrow text-snow/60">Need help deciding?</p>
-                <h2 className="display mt-3 text-3xl text-snow sm:text-4xl">
+                <p className="eyebrow text-white/60">Need help deciding?</p>
+                <h2 className="display mt-3 text-3xl text-white sm:text-4xl">
                   Talk to a travel host — not a call centre.
                 </h2>
               </div>
@@ -574,7 +573,7 @@ function PromoBanner() {
                 href={waLink("Hi The Wandering Nomads! I need help picking a trip.")}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
+                className="inline-flex items-center rounded-lg bg-white px-6 py-3 text-[13.5px] font-medium text-forest transition hover:bg-white/90 hover:shadow-md"
               >
                 Request a callback
               </a>

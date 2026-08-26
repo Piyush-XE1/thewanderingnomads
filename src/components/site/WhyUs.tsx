@@ -29,7 +29,7 @@ const REASONS = [
 
 export function WhyUs() {
   return (
-    <section className="relative bg-background py-24 sm:py-32">
+    <section className="relative bg-cream py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
           <p className="eyebrow">Why travel with us</p>
@@ -40,15 +40,15 @@ export function WhyUs() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {REASONS.map((w, i) => (
             <Reveal key={w.t} delay={i * 0.05}>
-              <div className="group relative h-full rounded-[24px] hairline bg-card p-7 lift">
-                <span className="display text-sm text-ink/30">
+              <div className="group relative h-full rounded-xl bg-card border border-ink/6 p-7 shadow-[0_1px_3px_rgba(20,28,36,0.03)] transition-all duration-300 hover:shadow-lift hover:-translate-y-1">
+                <span className="display text-sm text-forest/40">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="display mt-6 text-2xl text-ink">{w.t}</h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground">{w.d}</p>
+                <h3 className="display mt-6 text-xl text-ink">{w.t}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{w.d}</p>
               </div>
             </Reveal>
           ))}

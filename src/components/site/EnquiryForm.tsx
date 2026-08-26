@@ -21,11 +21,13 @@ export function EnquiryForm({ tone = "light" }: { tone?: "light" | "dark" }) {
         );
       }}
       className={
-        dark ? "glass-dark rounded-[28px] p-6 sm:p-8" : "rounded-[28px] bg-card p-6 hairline sm:p-8"
+        dark
+          ? "glass-dark rounded-2xl p-6 sm:p-8"
+          : "rounded-2xl bg-card border border-ink/6 p-6 shadow-[0_1px_3px_rgba(20,28,36,0.03)] sm:p-8"
       }
     >
-      <p className={`eyebrow ${dark ? "text-snow/60" : ""}`}>Enquire</p>
-      <h3 className={`display mt-3 text-2xl ${dark ? "text-snow" : "text-ink"}`}>
+      <p className={`eyebrow ${dark ? "text-white/60" : ""}`}>Enquire</p>
+      <h3 className={`display mt-3 text-2xl ${dark ? "text-white" : "text-ink"}`}>
         We'll take it from here
       </h3>
       <div className="mt-6 grid gap-4">
@@ -38,7 +40,7 @@ export function EnquiryForm({ tone = "light" }: { tone?: "light" | "dark" }) {
         />
         <div>
           <label
-            className={`text-[11px] uppercase tracking-[0.18em] ${dark ? "text-snow/70" : "text-muted-foreground"}`}
+            className={`text-[11px] uppercase tracking-[0.18em] ${dark ? "text-white/70" : "text-muted-foreground"}`}
           >
             A few words
           </label>
@@ -48,8 +50,8 @@ export function EnquiryForm({ tone = "light" }: { tone?: "light" | "dark" }) {
             placeholder="When you'd like to travel, group size, anything on your mind."
             className={
               dark
-                ? "mt-2 w-full rounded-2xl border border-snow/20 bg-snow/5 px-4 py-3 text-[14.5px] text-snow placeholder:text-snow/55 outline-none transition focus:border-snow/45 focus:bg-snow/10"
-                : "mt-2 w-full rounded-2xl border border-ink/12 bg-background px-4 py-3 text-[14.5px] outline-none transition focus:border-ink/30"
+                ? "mt-2 w-full rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-[14.5px] text-white placeholder:text-white/55 outline-none transition focus:border-white/40 focus:bg-white/10"
+                : "mt-2 w-full rounded-xl border border-ink/10 bg-background px-4 py-3 text-[14.5px] outline-none transition focus:border-forest/40"
             }
           />
         </div>
@@ -57,8 +59,8 @@ export function EnquiryForm({ tone = "light" }: { tone?: "light" | "dark" }) {
           type="submit"
           className={
             dark
-              ? "mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-snow px-6 py-3.5 text-[13.5px] font-medium text-ink transition hover:opacity-85"
-              : "mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[13.5px] font-medium text-snow transition hover:opacity-90"
+              ? "mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3.5 text-[13.5px] font-medium text-forest transition hover:opacity-90"
+              : "mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-forest px-6 py-3.5 text-[13.5px] font-medium text-white transition hover:bg-forest/90 hover:shadow-[0_2px_8px_rgba(52,78,65,0.25)]"
           }
         >
           Continue on WhatsApp
@@ -82,7 +84,7 @@ function Field({
   return (
     <div>
       <label
-        className={`text-[11px] uppercase tracking-[0.18em] ${dark ? "text-snow/70" : "text-muted-foreground"}`}
+        className={`text-[11px] uppercase tracking-[0.18em] ${dark ? "text-white/70" : "text-muted-foreground"}`}
       >
         {label}
       </label>
@@ -91,8 +93,8 @@ function Field({
         placeholder={placeholder}
         className={
           dark
-            ? "mt-2 w-full rounded-full border border-snow/20 bg-snow/5 px-5 py-3 text-[14.5px] text-snow placeholder:text-snow/55 outline-none transition focus:border-snow/45 focus:bg-snow/10"
-            : "mt-2 w-full rounded-full border border-ink/12 bg-background px-5 py-3 text-[14.5px] outline-none transition focus:border-ink/30"
+            ? "mt-2 w-full rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-[14.5px] text-white placeholder:text-white/55 outline-none transition focus:border-white/40 focus:bg-white/10"
+            : "mt-2 w-full rounded-lg border border-ink/10 bg-background px-5 py-3 text-[14.5px] outline-none transition focus:border-forest/40"
         }
       />
     </div>

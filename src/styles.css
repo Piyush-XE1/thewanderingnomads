@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * The Wandering Nomads — design system
- * Nature-first palette. Editorial typography. Restrained, premium.
+ * The Wandering Nomads — Premium travel design system
+ * Warm, nature-inspired palette. Editorial typography. Clean, sophisticated.
  */
 
 @theme inline {
@@ -45,6 +45,8 @@
   --color-sunrise: var(--sunrise);
   --color-snow: var(--snow);
   --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-warm: var(--warm);
 
   /* Pre-launch countdown atmosphere (theme-independent) */
   --color-launch-ink: var(--launch-ink);
@@ -55,44 +57,47 @@
   --font-display: "Instrument Serif", "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --shadow-soft: 0 1px 2px rgba(20, 28, 36, 0.04), 0 8px 24px -12px rgba(20, 28, 36, 0.10);
-  --shadow-lift: 0 2px 4px rgba(20, 28, 36, 0.05), 0 24px 60px -24px rgba(20, 28, 36, 0.18);
+  --shadow-soft: 0 1px 3px rgba(20, 28, 36, 0.04), 0 4px 12px -4px rgba(20, 28, 36, 0.06);
+  --shadow-lift: 0 4px 12px rgba(20, 28, 36, 0.06), 0 16px 40px -12px rgba(20, 28, 36, 0.12);
+  --shadow-card: 0 1px 2px rgba(20, 28, 36, 0.03), 0 4px 16px -4px rgba(20, 28, 36, 0.06);
   --shadow-glass: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 2px rgba(20, 28, 36, 0.06), 0 20px 60px -20px rgba(20, 28, 36, 0.20);
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.75rem;
 
-  /* Snow → Ink */
-  --snow: oklch(0.985 0.004 95);
-  --background: oklch(0.985 0.004 95);
-  --foreground: oklch(0.22 0.02 250);
-  --ink: oklch(0.18 0.015 250);
+  /* Warm ivory / cream palette */
+  --cream: oklch(0.975 0.008 85);
+  --warm: oklch(0.96 0.012 80);
+  --snow: oklch(0.975 0.006 85);
+  --background: oklch(0.975 0.008 85);
+  --foreground: oklch(0.24 0.02 260);
+  --ink: oklch(0.20 0.018 260);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 250);
+  --card-foreground: oklch(0.24 0.02 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 250);
+  --popover-foreground: oklch(0.24 0.02 260);
 
-  /* Forest as primary */
-  --primary: oklch(0.34 0.05 155);
-  --primary-foreground: oklch(0.985 0.004 95);
-  --forest: oklch(0.34 0.05 155);
+  /* Deep forest green as primary */
+  --primary: oklch(0.33 0.06 155);
+  --primary-foreground: oklch(0.975 0.006 85);
+  --forest: oklch(0.33 0.06 155);
 
-  --secondary: oklch(0.955 0.008 90);
-  --secondary-foreground: oklch(0.22 0.02 250);
+  --secondary: oklch(0.945 0.012 85);
+  --secondary-foreground: oklch(0.24 0.02 260);
 
-  --muted: oklch(0.955 0.008 90);
-  --muted-foreground: oklch(0.48 0.02 250);
+  --muted: oklch(0.95 0.01 85);
+  --muted-foreground: oklch(0.50 0.02 255);
 
-  --accent: oklch(0.94 0.012 85);
-  --accent-foreground: oklch(0.22 0.02 250);
+  --accent: oklch(0.935 0.018 82);
+  --accent-foreground: oklch(0.24 0.02 260);
 
   --destructive: oklch(0.55 0.18 27);
-  --destructive-foreground: oklch(0.985 0.004 95);
+  --destructive-foreground: oklch(0.975 0.006 85);
 
-  --border: oklch(0.90 0.01 90);
-  --input: oklch(0.90 0.01 90);
+  --border: oklch(0.91 0.008 85);
+  --input: oklch(0.91 0.008 85);
   --ring: oklch(0.55 0.06 155);
 
   /* Nature tokens */
@@ -108,11 +113,9 @@
   --launch-gold: oklch(0.82 0.10 70);
 }
 
-
 .dark {
-  /* Inverted neutrals — semantic tokens (snow/ink/bg/card/muted) flip
-     so every existing utility (bg-snow, text-ink, border-ink/8, bg-card…)
-     adapts automatically. */
+  --cream: oklch(0.18 0.012 255);
+  --warm: oklch(0.20 0.014 250);
   --snow: oklch(0.16 0.012 250);
   --background: oklch(0.14 0.012 250);
   --foreground: oklch(0.95 0.005 90);
@@ -191,7 +194,7 @@
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--forest) 30%, transparent);
+    background: color-mix(in oklab, var(--forest) 25%, transparent);
     color: var(--ink);
   }
 
@@ -221,14 +224,14 @@
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted-foreground);
+  color: var(--forest);
 }
 
 @utility glass {
-  background: color-mix(in oklab, white 55%, transparent);
+  background: color-mix(in oklab, white 75%, transparent);
   backdrop-filter: saturate(140%) blur(18px);
-  border: 1px solid color-mix(in oklab, white 60%, transparent);
-  box-shadow: var(--shadow-glass);
+  border: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
+  box-shadow: var(--shadow-soft);
 }
 
 @utility glass-dark {
@@ -238,14 +241,14 @@
 }
 
 @utility hairline {
-  border: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--ink) 7%, transparent);
 }
 
 @utility lift {
-  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-lift);
   }
 }
@@ -305,7 +308,7 @@
 
 .cms-content blockquote,
 .rich-text-editor blockquote {
-  border-left: 2px solid var(--border);
+  border-left: 2px solid var(--forest);
   padding-left: 1em;
   font-style: italic;
   color: var(--muted-foreground);
@@ -335,14 +338,6 @@
   display: inline-block;
 }
 
-.rich-text-editor p.is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: var(--muted-foreground);
-  pointer-events: none;
-  height: 0;
-}
-
 .rich-text-editor ul,
 .rich-text-editor ol {
   padding-left: 1.25em;
@@ -352,3 +347,16 @@
   outline: none;
 }
 
+/* Premium card surface */
+@utility card-surface {
+  background: var(--color-card);
+  border: 1px solid color-mix(in oklab, var(--ink) 6%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* Forest green section */
+@utility section-forest {
+  background-color: var(--forest);
+  color: oklch(0.97 0.005 155);
+}

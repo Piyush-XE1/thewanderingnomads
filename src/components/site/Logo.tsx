@@ -1,6 +1,5 @@
 /**
  * Wandering Nomads brand mark.
- *
  * Placeholder-friendly: to replace with a final logo, drop the file into
  * `src/assets/brand/logo-light.svg` / `logo-dark.svg` and switch the
  * two <img> blocks below. Everything else (sizing, spacing) stays intact.
@@ -13,26 +12,25 @@ export function Logo({
   variant?: "dark" | "light";
   size?: number;
 }) {
-  const stroke = variant === "light" ? "rgba(255,255,255,0.92)" : "currentColor";
+  const stroke = variant === "light" ? "rgba(255,255,255,0.92)" : "oklch(0.33 0.06 155)";
   const bg =
     variant === "light"
       ? "rgba(255,255,255,0.10)"
-      : "color-mix(in oklab, currentColor 6%, transparent)";
+      : "color-mix(in oklab, oklch(0.33 0.06 155) 8%, transparent)";
   const border =
     variant === "light"
-      ? "rgba(255,255,255,0.35)"
-      : "color-mix(in oklab, currentColor 18%, transparent)";
+      ? "rgba(255,255,255,0.25)"
+      : "color-mix(in oklab, oklch(0.33 0.06 155) 15%, transparent)";
 
   return (
     <span
       aria-hidden
-      className="inline-flex items-center justify-center rounded-full transition-colors"
+      className="inline-flex items-center justify-center rounded-lg transition-colors"
       style={{
         width: size,
         height: size,
         background: bg,
         border: `1px solid ${border}`,
-        backdropFilter: "blur(8px)",
       }}
     >
       <svg

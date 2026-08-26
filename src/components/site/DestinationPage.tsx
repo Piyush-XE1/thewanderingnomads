@@ -41,7 +41,7 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
             </p>
             <Link
               to={listTo as "/india-trips" | "/international-trips"}
-              className="mt-10 inline-flex items-center rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-snow"
+              className="mt-10 inline-flex items-center rounded-lg bg-forest px-6 py-3 text-[13px] font-medium text-white"
             >
               Browse destinations
             </Link>
@@ -97,16 +97,16 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
                   href={enquire}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center rounded-full bg-white px-6 py-3 text-[13.5px] font-medium text-neutral-900 transition hover:bg-white/90"
+                  className="inline-flex items-center rounded-lg bg-white px-6 py-3 text-[13.5px] font-medium text-forest transition hover:bg-white/90 hover:shadow-md"
                 >
                   Enquire on WhatsApp
                 </a>
                 {starting ? (
-                  <span className="rounded-full border border-white/20 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-white/80">
+                  <span className="rounded-lg border border-white/25 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-white/80">
                     From {starting}
                   </span>
                 ) : (
-                  <span className="rounded-full border border-white/20 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-white/80">
+                  <span className="rounded-lg border border-white/25 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-white/80">
                     Custom · on request
                   </span>
                 )}
@@ -132,7 +132,7 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
                 </Reveal>
                 {dest.places && dest.places.length > 0 ? (
                   <Reveal delay={0.08}>
-                    <div className="rounded-[24px] bg-card p-6 hairline">
+                    <div className="rounded-2xl bg-card p-6 border border-ink/6 shadow-[0_1px_3px_rgba(20,28,36,0.03)]">
                       <p className="eyebrow">Places we cover</p>
                       <ul className="mt-4 space-y-2.5 text-[14.5px] text-ink/85">
                         {dest.places.map((place) => (
@@ -183,7 +183,7 @@ export function DestinationPage({ slug, region }: { slug: string; region: Region
                     href={enquire}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-8 inline-flex items-center rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-snow"
+                    className="mt-8 inline-flex items-center rounded-lg bg-forest px-6 py-3 text-[13px] font-medium text-white"
                   >
                     Plan this trip
                   </a>

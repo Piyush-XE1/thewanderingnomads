@@ -71,7 +71,7 @@ function IndiaTripsPage() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28">
+        <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal>
               <p className="eyebrow">Overview</p>
@@ -87,10 +87,10 @@ function IndiaTripsPage() {
                 <button
                   key={f.id}
                   onClick={() => setFilter(f.id)}
-                  className={`rounded-full px-4 py-2 text-[13px] font-medium transition ${
+                  className={`rounded-lg px-4 py-2 text-[13px] font-medium transition ${
                     filter === f.id
-                      ? "bg-ink text-snow"
-                      : "hairline text-muted-foreground hover:text-ink"
+                      ? "bg-forest text-white shadow-sm"
+                      : "bg-cream text-muted-foreground hover:text-forest hover:bg-forest/5"
                   }`}
                 >
                   {f.label}

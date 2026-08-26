@@ -49,7 +49,7 @@ function GalleryPage() {
 
   return (
     <SiteLayout>
-      <main className="pt-40 pb-32">
+      <main className="pt-36 pb-32">
         <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <p className="eyebrow">Gallery</p>
@@ -72,11 +72,11 @@ function GalleryPage() {
                 delay={i * 0.04}
                 className={i % 5 === 0 ? "row-span-2" : ""}
               >
-                <figure className="group relative h-full w-full overflow-hidden rounded-2xl hairline">
+                <figure className="group relative h-full w-full overflow-hidden rounded-xl">
                   <img
                     src={g.src}
                     alt={g.loc || "Trip photograph"}
-                    className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.05]"
+                    className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
                     loading="lazy"
                   />
                   {g.loc ? (

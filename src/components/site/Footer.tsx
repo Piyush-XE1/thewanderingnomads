@@ -23,23 +23,23 @@ export function Footer() {
         ];
 
   return (
-    <footer className="border-t border-ink/8 bg-snow">
+    <footer className="bg-forest text-white/90">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-[11px] font-medium tracking-widest text-ink">
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 text-[11px] font-medium tracking-widest text-white/90">
                 WN
               </span>
-              <span className="display text-[17px] text-ink">
+              <span className="display text-[17px] text-white">
                 {settings?.site_title ?? "The Wandering Nomads"}
               </span>
             </div>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">
               Small-group community trips across India and beyond — confirmed dates, hosted
               departures, and itineraries we have actually walked.
             </p>
-            <p className="mt-6 text-xs text-muted-foreground">Jaipur, Rajasthan · India</p>
+            <p className="mt-6 text-xs text-white/50">Jaipur, Rajasthan · India</p>
           </div>
 
           <FooterCol title="Trips">
@@ -50,7 +50,7 @@ export function Footer() {
               <Link
                 to="/india-trips/$slug"
                 params={{ slug: "kashmir" }}
-                className="transition hover:text-ink"
+                className="transition hover:text-white"
               >
                 Kashmir
               </Link>
@@ -59,7 +59,7 @@ export function Footer() {
               <Link
                 to="/india-trips/$slug"
                 params={{ slug: "spiti" }}
-                className="transition hover:text-ink"
+                className="transition hover:text-white"
               >
                 Spiti
               </Link>
@@ -68,14 +68,14 @@ export function Footer() {
               <Link
                 to="/international-trips/$slug"
                 params={{ slug: "bhutan" }}
-                className="transition hover:text-ink"
+                className="transition hover:text-white"
               >
                 Bhutan
               </Link>
             </li>
           </FooterCol>
 
-          <FooterCol title="The brand">
+          <FooterCol title="Explore">
             <FLink to="/about">About</FLink>
             <FLink to="/gallery">Gallery</FLink>
             <FLink to="/atlas">Travel Atlas</FLink>
@@ -94,7 +94,7 @@ export function Footer() {
           </FooterCol>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-ink/8 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/12 pt-8 text-xs text-white/50 sm:flex-row sm:items-center">
           <p>
             {settings?.footer_copyright ??
               `© ${new Date().getFullYear()} The Wandering Nomads. Crafted with care in Jaipur.`}
@@ -109,8 +109,10 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="eyebrow mb-4">{title}</p>
-      <ul className="flex flex-col gap-2.5 text-sm text-ink/80">{children}</ul>
+      <p className="mb-4 text-[11px] font-medium tracking-[0.2em] uppercase text-white/50">
+        {title}
+      </p>
+      <ul className="flex flex-col gap-2.5 text-sm text-white/75">{children}</ul>
     </div>
   );
 }
@@ -118,7 +120,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 function FLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link to={to} className="transition hover:text-ink">
+      <Link to={to} className="transition hover:text-white">
         {children}
       </Link>
     </li>
@@ -128,7 +130,7 @@ function FLink({ to, children }: { to: string; children: React.ReactNode }) {
 function FA({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <a href={href} className="transition hover:text-ink" target="_blank" rel="noreferrer">
+      <a href={href} className="transition hover:text-white" target="_blank" rel="noreferrer">
         {children}
       </a>
     </li>
