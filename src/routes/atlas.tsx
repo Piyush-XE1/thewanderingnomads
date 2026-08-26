@@ -57,13 +57,13 @@ function AtlasPage() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
+      <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24 bg-white">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-70"
+          className="pointer-events-none absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(1000px 500px at 50% -10%, color-mix(in oklab, var(--forest) 15%, transparent), transparent 60%)",
+              "radial-gradient(1000px 500px at 50% -10%, color-mix(in oklab, var(--forest) 12%, transparent), transparent 60%)",
           }}
         />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
@@ -87,7 +87,7 @@ function AtlasPage() {
       {/* Stats */}
       <section className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-ink/10 bg-ink/10 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink/8 bg-ink/5 sm:grid-cols-3 lg:grid-cols-6">
             <Stat label="States explored" value={stats.statesExplored} />
             <Stat label="Cities visited" value={stats.citiesVisited} suffix="+" />
             <Stat label="Countries explored" value={stats.countriesExplored} />
@@ -102,7 +102,7 @@ function AtlasPage() {
       <section className="mx-auto mt-16 max-w-6xl px-6 pb-24 sm:mt-24">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr]">
           <Reveal>
-            <div className="rounded-3xl border border-ink/8 bg-card p-4 sm:p-6">
+            <div className="rounded-2xl border border-ink/6 bg-card p-4 shadow-[0_1px_3px_rgba(20,28,36,0.03)] sm:p-6">
               <p className="eyebrow mb-2">India</p>
               <p className="display text-2xl text-ink/90">Tap a state to open its chapter.</p>
               <div className="mt-4">
@@ -116,7 +116,7 @@ function AtlasPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-3xl border border-ink/8 bg-card p-6">
+            <div className="rounded-2xl border border-ink/6 bg-card p-6 shadow-[0_1px_3px_rgba(20,28,36,0.03)]">
               <div className="flex items-baseline justify-between">
                 <p className="eyebrow">Chapters unlocked</p>
                 <span className="text-xs text-muted-foreground">{visited.length}</span>
@@ -126,13 +126,13 @@ function AtlasPage() {
                   <li key={s.id}>
                     <button
                       onClick={() => setSelectedId(s.id)}
-                      className="group flex w-full items-center gap-2 rounded-md py-1 text-left text-ink/80 transition hover:text-ink"
+                      className="group flex w-full items-center gap-2 rounded-md py-1 text-left text-ink/80 transition hover:text-forest"
                     >
                       <motion.span
                         layoutId={`dot-${s.id}`}
                         className="h-1.5 w-1.5 rounded-full bg-forest"
                       />
-                      <span className="border-b border-transparent group-hover:border-ink/40">
+                      <span className="border-b border-transparent group-hover:border-forest/40">
                         {s.name}
                       </span>
                     </button>
@@ -140,7 +140,7 @@ function AtlasPage() {
                 ))}
               </ul>
 
-              <div className="mt-8 rounded-2xl border border-dashed border-ink/12 p-4">
+              <div className="mt-8 rounded-xl border border-dashed border-forest/20 bg-forest/5 p-4">
                 <p className="eyebrow">Coming soon</p>
                 <p className="mt-2 text-sm text-ink/70">
                   As the trips extend beyond India, this atlas will grow into a World Atlas —
@@ -160,7 +160,7 @@ function AtlasPage() {
 function Stat({ label, value, suffix }: { label: string; value: number; suffix?: string }) {
   return (
     <div className="bg-card p-5 text-center sm:p-6">
-      <p className="display text-3xl sm:text-4xl">
+      <p className="display text-3xl text-forest sm:text-4xl">
         {value}
         {suffix ?? ""}
       </p>
@@ -174,7 +174,7 @@ function CompassStat() {
     <div className="relative flex flex-col items-center justify-center overflow-hidden bg-card p-5 text-center sm:p-6">
       <svg
         viewBox="0 0 64 64"
-        className="h-10 w-10 text-ink/70"
+        className="h-10 w-10 text-forest/70"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.4"

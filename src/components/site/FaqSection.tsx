@@ -38,7 +38,7 @@ const FAQS = [
 
 export function FaqSection() {
   return (
-    <section id="faq" className="relative bg-snow py-24 sm:py-32 border-t border-ink/8">
+    <section id="faq" className="relative bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
@@ -58,7 +58,7 @@ export function FaqSection() {
                 href={waLink("Hi The Wandering Nomads! I have a few questions about your trips.")}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-6 inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-snow transition hover:opacity-90"
+                className="mt-6 inline-flex items-center rounded-lg bg-forest px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-forest/90 hover:shadow-[0_2px_8px_rgba(52,78,65,0.25)]"
               >
                 Chat with us
               </a>
@@ -71,7 +71,7 @@ export function FaqSection() {
                 <details className="group py-5">
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-left">
                     <span className="display text-xl text-ink sm:text-[22px]">{item.q}</span>
-                    <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink/15 text-ink/50 transition group-open:rotate-45">
+                    <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-forest/30 text-forest/70 transition group-open:rotate-45">
                       +
                     </span>
                   </summary>

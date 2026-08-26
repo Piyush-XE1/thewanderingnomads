@@ -35,7 +35,7 @@ function AboutPage() {
 
   return (
     <SiteLayout>
-      <main className="pt-40 pb-32">
+      <main className="pt-36 pb-32">
         <div className="mx-auto max-w-3xl px-6">
           <Reveal>
             <p className="eyebrow">{about?.founder_title ?? "About the company"}</p>
@@ -61,13 +61,13 @@ function AboutPage() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 to="/upcoming-trips"
-                className="inline-flex items-center rounded-full bg-ink px-6 py-3.5 text-[13.5px] font-medium text-snow transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex items-center rounded-lg bg-forest px-6 py-3.5 text-[13.5px] font-medium text-white transition hover:bg-forest/90 hover:shadow-[0_2px_8px_rgba(52,78,65,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 See upcoming trips
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center rounded-full border border-ink/15 px-6 py-3.5 text-[13.5px] font-medium text-ink transition hover:bg-ink/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex items-center rounded-lg border border-forest/20 px-6 py-3.5 text-[13.5px] font-medium text-forest transition hover:bg-forest/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Plan a trip
               </Link>

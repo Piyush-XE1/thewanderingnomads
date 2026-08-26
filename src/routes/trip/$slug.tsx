@@ -71,7 +71,7 @@ function TripDetailPage() {
             </p>
             <Link
               to="/upcoming-trips"
-              className="mt-10 inline-flex items-center rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-snow"
+              className="mt-10 inline-flex items-center rounded-lg bg-forest px-6 py-3 text-[13px] font-medium text-white"
             >
               See upcoming trips
             </Link>
@@ -143,12 +143,12 @@ function TripDetailPage() {
                       : "/india-trips/$slug"
                   }
                   params={{ slug: dest.slug }}
-                  className="rounded-full bg-ink/5 px-3 py-1.5 uppercase tracking-[0.14em] text-ink hover:bg-ink/10"
+                  className="rounded-lg bg-forest/5 px-3 py-1.5 uppercase tracking-[0.14em] text-forest hover:bg-forest/10"
                 >
                   {dest.name}
                 </Link>
               ) : (
-                <span className="rounded-full bg-ink/5 px-3 py-1.5 uppercase tracking-[0.14em] text-ink">
+                <span className="rounded-lg bg-forest/5 px-3 py-1.5 uppercase tracking-[0.14em] text-forest">
                   {trip.destination}
                 </span>
               )}
@@ -194,7 +194,7 @@ function TripDetailPage() {
                 <section className="mt-16">
                   <p className="eyebrow">Available batches</p>
                   <h2 className="display mt-4 text-4xl sm:text-5xl">Pick your departure.</h2>
-                  <div className="mt-8 divide-y divide-ink/8 rounded-[24px] bg-card hairline">
+                  <div className="mt-8 divide-y divide-ink/6 rounded-2xl bg-card border border-ink/6">
                     {tripBatches.map((batch) => {
                       const assigned = hostsForBatch(batch.id, batchHosts, hosts);
                       const lead = assigned.find((h) => h.role === "lead")?.host;
@@ -219,7 +219,7 @@ function TripDetailPage() {
                             href={waLink(tripEnquiryMessage(trip, batch))}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-snow transition hover:opacity-90"
+                            className="inline-flex items-center rounded-lg bg-forest px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-forest/90"
                           >
                             Enquire
                           </a>
@@ -266,7 +266,7 @@ function TripDetailPage() {
             </div>
 
             <aside className="hidden lg:block">
-              <div className="sticky top-28 rounded-[28px] bg-card p-6 hairline">
+              <div className="sticky top-28 rounded-2xl bg-card p-6 border border-ink/6 shadow-[0_1px_3px_rgba(20,28,36,0.03)]">
                 <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                   {trip.duration ? `${trip.duration} package` : "Community trip"}
                 </p>
@@ -312,7 +312,7 @@ function TripDetailPage() {
                   href={book}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-full bg-ink px-6 py-4 text-[15px] font-semibold text-snow shadow-lift transition hover:opacity-90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+                  className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-lg bg-forest px-6 py-4 text-[15px] font-semibold text-white shadow-[0_2px_8px_rgba(52,78,65,0.25)] transition hover:bg-forest/90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
                 >
                   <WhatsAppIcon className="h-4.5 w-4.5 shrink-0" />
                   Book now — WhatsApp
@@ -322,7 +322,7 @@ function TripDetailPage() {
                     href={trip.booking_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-2.5 flex w-full items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-[13px] font-medium text-ink transition hover:bg-ink/5"
+                    className="mt-2.5 flex w-full items-center justify-center rounded-lg border border-forest/20 px-5 py-3 text-[13px] font-medium text-forest transition hover:bg-forest/5"
                   >
                     {trip.cta_label ?? "More details"}
                   </a>
@@ -362,7 +362,7 @@ function TripDetailPage() {
         </div>
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-[64] border-t border-ink/10 bg-background/90 px-4 py-3 backdrop-blur-md lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-[64] border-t border-ink/6 bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
           <div className="min-w-0">
             {trip.price ? <p className="display text-xl text-ink">{trip.price}</p> : null}
@@ -374,7 +374,7 @@ function TripDetailPage() {
             href={book}
             target="_blank"
             rel="noreferrer"
-            className="flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3 text-[14.5px] font-semibold text-snow shadow-lift transition hover:opacity-90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-full bg-forest px-7 py-3 text-[14.5px] font-semibold text-white shadow-lift transition hover:opacity-90 active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <WhatsAppIcon className="h-4 w-4 shrink-0" />
             Book now
@@ -393,7 +393,7 @@ function Gallery({ photos, title }: { photos: { url: string; alt: string }[]; ti
   return (
     <Reveal delay={0.1}>
       <div className="mt-10">
-        <div className="overflow-hidden rounded-[28px] hairline">
+        <div className="overflow-hidden rounded-2xl border border-ink/6">
           <img
             src={current.url}
             alt={current.alt || title}
@@ -410,7 +410,7 @@ function Gallery({ photos, title }: { photos: { url: string; alt: string }[]; ti
                 type="button"
                 onClick={() => setActive(i)}
                 className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl ${
-                  i === active ? "ring-2 ring-ink" : "opacity-70 hover:opacity-100"
+                  i === active ? "ring-2 ring-forest" : "opacity-70 hover:opacity-100"
                 }`}
                 aria-label={`Photo ${i + 1}`}
               >
@@ -426,7 +426,7 @@ function Gallery({ photos, title }: { photos: { url: string; alt: string }[]; ti
 
 function MetaChip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full border border-ink/10 px-3 py-1.5 uppercase tracking-[0.14em] text-muted-foreground">
+    <span className="rounded-lg border border-ink/8 px-3 py-1.5 uppercase tracking-[0.14em] text-muted-foreground">
       {children}
     </span>
   );

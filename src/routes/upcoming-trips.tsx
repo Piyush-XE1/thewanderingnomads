@@ -82,7 +82,7 @@ function UpcomingTripsPage() {
 
   return (
     <SiteLayout>
-      <main className="pt-40 pb-32">
+      <main className="pt-32 pb-32">
         <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <p className="eyebrow">Upcoming Trips</p>
@@ -104,10 +104,10 @@ function UpcomingTripsPage() {
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
-                className={`rounded-full px-4 py-2 text-[13px] font-medium transition ${
+                className={`rounded-lg px-4 py-2 text-[13px] font-medium transition ${
                   filter === f.id
-                    ? "bg-ink text-snow"
-                    : "hairline text-muted-foreground hover:text-ink"
+                    ? "bg-forest text-white shadow-sm"
+                    : "bg-cream text-muted-foreground hover:text-forest hover:bg-forest/5"
                 }`}
               >
                 {f.label}
@@ -117,7 +117,7 @@ function UpcomingTripsPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search trips…"
-              className="ml-auto w-full max-w-xs rounded-full border border-ink/12 bg-card px-5 py-2 text-[13.5px] outline-none transition focus:border-ink/30"
+              className="ml-auto w-full max-w-xs rounded-lg border border-ink/10 bg-card px-5 py-2 text-[13.5px] outline-none transition focus:border-forest/40"
             />
           </div>
 
@@ -143,7 +143,7 @@ function UpcomingTripsPage() {
               ))}
             </div>
           ) : (
-            <div className="mt-16 rounded-[28px] border border-dashed border-border p-14 text-center">
+            <div className="mt-16 rounded-2xl border border-dashed border-border p-14 text-center">
               <p className="display text-2xl text-ink">No trips match.</p>
               <p className="mt-2 text-sm text-muted-foreground">
                 Try a different filter, or ask us what's next.
@@ -154,14 +154,14 @@ function UpcomingTripsPage() {
                 )}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-8 inline-flex items-center rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-snow"
+                className="mt-8 inline-flex items-center rounded-lg bg-forest px-6 py-3 text-[13px] font-medium text-white transition hover:bg-forest/90"
               >
                 Chat on WhatsApp
               </a>
             </div>
           )}
 
-          <div className="mt-20 grid gap-8 md:grid-cols-3">
+          <div className="mt-20 grid gap-6 md:grid-cols-3">
             {[
               {
                 t: "Solo-friendly",
@@ -176,9 +176,9 @@ function UpcomingTripsPage() {
                 d: "A named trip captain on every departure — someone who has walked the route.",
               },
             ].map((item) => (
-              <div key={item.t} className="rounded-[24px] bg-card p-6 hairline">
-                <h3 className="display text-2xl text-ink">{item.t}</h3>
-                <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{item.d}</p>
+              <div key={item.t} className="rounded-xl bg-cream border border-ink/5 p-6">
+                <h3 className="display text-xl text-forest">{item.t}</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">{item.d}</p>
               </div>
             ))}
           </div>
@@ -204,8 +204,10 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full px-3.5 py-1.5 text-[12px] font-medium transition ${
-        active ? "bg-ink/90 text-snow" : "bg-ink/5 text-ink/70 hover:bg-ink/10"
+      className={`rounded-lg px-3.5 py-1.5 text-[12px] font-medium transition ${
+        active
+          ? "bg-forest text-white shadow-sm"
+          : "bg-cream text-ink/70 hover:bg-forest/5 hover:text-forest"
       }`}
     >
       {children}

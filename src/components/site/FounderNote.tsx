@@ -16,11 +16,11 @@ export function FounderNote() {
   const portrait = about?.founder_image_url ?? krishImg;
 
   return (
-    <section className="relative bg-snow py-20 sm:py-24 border-t border-ink/8">
+    <section className="relative bg-cream py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <div className="grid items-center gap-10 rounded-[32px] bg-card p-6 hairline sm:p-10 lg:grid-cols-[200px_1fr]">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-muted">
+          <div className="grid items-center gap-10 rounded-2xl bg-card border border-ink/6 p-6 shadow-[0_1px_3px_rgba(20,28,36,0.03)] sm:p-10 lg:grid-cols-[200px_1fr]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-muted">
               <img
                 src={portrait}
                 alt={name}
@@ -48,7 +48,7 @@ export function FounderNote() {
               </p>
               <Link
                 to="/about"
-                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-ink"
+                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-forest hover:text-forest/80 transition-colors"
               >
                 Read the story
                 <span aria-hidden>→</span>

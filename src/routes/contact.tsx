@@ -26,7 +26,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <SiteLayout>
-      <main className="pt-40 pb-32">
+      <main className="pt-36 pb-32">
         <div className="mx-auto max-w-6xl px-6">
           <Reveal>
             <p className="eyebrow">Contact</p>
@@ -66,13 +66,13 @@ function ContactPage() {
 function Row({ label, v, href }: { label: string; v: string; href?: string }) {
   return (
     <Reveal>
-      <div className="border-t border-ink/10 pt-5">
+      <div className="border-t border-forest/15 pt-5">
         <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
         <p className="mt-3 text-[18px] text-ink">
           {href ? (
             <a
               href={href}
-              className="border-b border-ink/20 pb-0.5 transition hover:border-ink"
+              className="border-b border-forest/30 pb-0.5 transition hover:border-forest hover:text-forest"
               target="_blank"
               rel="noreferrer"
             >

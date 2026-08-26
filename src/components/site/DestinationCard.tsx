@@ -11,13 +11,13 @@ export function DestinationCard({ dest }: { dest: DestinationView }) {
     <Link
       to={to}
       params={{ slug: dest.slug }}
-      className="group lift relative flex aspect-[4/5] flex-col overflow-hidden rounded-[28px] bg-ink text-white hairline"
+      className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl bg-ink text-white"
     >
       {dest.image ? (
         <img
           src={dest.image}
           alt={dest.name}
-          className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.06]"
+          className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.05]"
           loading="lazy"
         />
       ) : (
@@ -26,19 +26,19 @@ export function DestinationCard({ dest }: { dest: DestinationView }) {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 80% at 20% 0%, color-mix(in oklab, var(--forest) 55%, black) 0%, #141c24 70%)",
+              "linear-gradient(135deg, oklch(0.33 0.06 155) 0%, oklch(0.22 0.04 260) 100%)",
           }}
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/10" />
 
       <div className="relative z-10 flex h-full flex-col justify-between p-5">
         <div className="flex items-start justify-between gap-2">
-          <span className="rounded-full glass-dark px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-white">
+          <span className="rounded-md bg-white/20 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white font-medium">
             {dest.tag}
           </span>
           {tripCount > 0 ? (
-            <span className="rounded-full glass-dark px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-white/85">
+            <span className="rounded-md bg-white/20 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-white/90">
               {tripCount} {tripCount === 1 ? "trip" : "trips"}
             </span>
           ) : null}
@@ -61,7 +61,7 @@ export function DestinationCard({ dest }: { dest: DestinationView }) {
               <p className="display mt-1 text-2xl">{price ?? "Enquire"}</p>
             </div>
             <span className="inline-flex items-center gap-1 text-[12px] font-medium text-white/90">
-              Details
+              Explore
               <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
             </span>
           </div>

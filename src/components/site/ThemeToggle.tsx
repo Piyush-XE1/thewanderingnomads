@@ -18,7 +18,7 @@ function applyTheme(theme: Theme) {
   }
 }
 
-export function ThemeToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
+export function ThemeToggle({ variant = "dark" }: { variant?: "light" | "dark" }) {
   const [theme, setTheme] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
@@ -34,11 +34,13 @@ export function ThemeToggle({ variant = "light" }: { variant?: "light" | "dark" 
   };
 
   const onDark = mounted && theme === "dark";
-  const base = "inline-flex h-9 w-9 items-center justify-center rounded-full border transition";
+  const base = "inline-flex h-9 w-9 items-center justify-center rounded-lg border transition";
   const styles =
-    variant === "light" && !onDark
-      ? "border-white/25 bg-white/5 text-white hover:bg-white/15"
-      : "border-ink/15 bg-ink/5 text-ink hover:bg-ink/10";
+    variant === "light"
+      ? "border-white/20 bg-white/5 text-white hover:bg-white/15"
+      : onDark
+        ? "border-forest/20 bg-forest/5 text-forest hover:bg-forest/10"
+        : "border-ink/10 bg-ink/3 text-ink/60 hover:bg-ink/6 hover:text-forest";
 
   return (
     <button

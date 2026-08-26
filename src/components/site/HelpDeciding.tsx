@@ -10,7 +10,7 @@ export function HelpDeciding({
 }) {
   return (
     <Reveal>
-      <div className="flex flex-col items-start justify-between gap-5 rounded-[28px] bg-card p-6 hairline sm:flex-row sm:items-center sm:p-8">
+      <div className="flex flex-col items-start justify-between gap-5 rounded-2xl bg-cream border border-ink/5 p-6 sm:flex-row sm:items-center sm:p-8">
         <div>
           <p className="eyebrow">Need help deciding?</p>
           <p className="display mt-2 text-2xl text-ink sm:text-3xl">
@@ -22,13 +22,13 @@ export function HelpDeciding({
             href={waLink(message)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-snow"
+            className="inline-flex items-center rounded-lg bg-forest px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-forest/90"
           >
             Chat on WhatsApp
           </a>
           <Link
             to="/upcoming-trips"
-            className="inline-flex items-center rounded-full border border-ink/15 px-5 py-2.5 text-[13px] font-medium text-ink"
+            className="inline-flex items-center rounded-lg border border-forest/20 px-5 py-2.5 text-[13px] font-medium text-forest transition hover:bg-forest/5"
           >
             See upcoming trips
           </Link>
