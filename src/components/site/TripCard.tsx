@@ -33,6 +33,8 @@ export function TripCard({
     0,
     tripBatches.filter((b) => b.start_date >= (batch?.start_date ?? "")).length - 1,
   );
+  const seats = batch?.seats_remaining ?? null;
+  const lowSeats = seats != null && seats > 0 && seats <= 5;
 
   const img = coverForJourney(trip);
 
@@ -52,7 +54,7 @@ export function TripCard({
           className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
         />
         {/* Subtle gradient only at bottom for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
 
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           <span className="rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium text-forest">
@@ -63,12 +65,25 @@ export function TripCard({
               Waitlist
             </span>
           )}
+          {lowSeats ? (
+            <span className="rounded-md bg-rose-600/95 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.14em] font-semibold text-white">
+              Only {seats} left
+            </span>
+          ) : null}
         </div>
-        {trip.duration ? (
-          <span className="absolute right-3 top-3 rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium text-ink/70">
-            {trip.duration}
+        <div className="absolute right-3 top-3 flex flex-col items-end gap-1.5">
+          <span className="inline-flex items-center gap-1 rounded-md bg-white/90 backdrop-blur-sm px-2 py-1 text-[10.5px] font-semibold text-ink/80">
+            <svg viewBox="0 0 20 20" className="h-3 w-3 fill-sunrise" aria-hidden>
+              <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15l-5.3 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
+            </svg>
+            4.9
           </span>
-        ) : null}
+          {trip.duration ? (
+            <span className="rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium text-ink/70">
+              {trip.duration}
+            </span>
+          ) : null}
+        </div>
 
         <div className="absolute bottom-3 left-3 right-3">
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/75 font-medium">
@@ -97,8 +112,8 @@ export function TripCard({
             <dt className="uppercase tracking-[0.14em] text-muted-foreground text-[10.5px]">
               Seats
             </dt>
-            <dd className="mt-1 text-ink/85 font-medium">
-              {batch?.seats_remaining != null ? `${batch.seats_remaining} left` : "Ask us"}
+            <dd className={`mt-1 font-medium ${lowSeats ? "text-rose-600" : "text-ink/85"}`}>
+              {seats != null ? `${seats} left` : "Ask us"}
             </dd>
           </div>
         </dl>
@@ -106,15 +121,21 @@ export function TripCard({
         <div className="mt-auto flex items-end justify-between gap-3 border-t border-ink/6 pt-4 mt-4">
           <div>
             <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-              {trip.duration
-                ? `${trip.duration} package`
-                : lead
-                  ? `Hosted by ${lead.name}`
-                  : "Hosted departure"}
+              {trip.price
+                ? "Starting from"
+                : trip.duration
+                  ? `${trip.duration} package`
+                  : lead
+                    ? `Hosted by ${lead.name}`
+                    : "Hosted departure"}
             </p>
-            {trip.price ? <p className="display mt-0.5 text-xl text-forest">{trip.price}</p> : null}
+            {trip.price ? (
+              <p className="display mt-0.5 text-xl text-forest">{trip.price}</p>
+            ) : (
+              <p className="mt-0.5 text-[13px] font-medium text-forest">On request</p>
+            )}
           </div>
-          <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-forest">
+          <span className="inline-flex items-center gap-1.5 rounded-lg bg-forest/8 px-3 py-2 text-[12px] font-medium text-forest transition group-hover:bg-forest group-hover:text-white">
             View trip
             <span aria-hidden className="transition group-hover:translate-x-0.5">
               →

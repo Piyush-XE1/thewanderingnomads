@@ -48,8 +48,14 @@ export function Nav() {
     >
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3.5 sm:px-6 sm:py-4">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <Logo variant="dark" size={30} />
-          <span className="display text-[15px] tracking-tight text-ink">The Wandering Nomads</span>
+          <Logo variant={transparent ? "light" : "dark"} size={30} />
+          <span
+            className={`display text-[15px] tracking-tight transition-colors ${
+              transparent ? "text-white" : "text-ink"
+            }`}
+          >
+            The Wandering Nomads
+          </span>
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -57,9 +63,11 @@ export function Nav() {
             <li key={l.to}>
               <Link
                 to={l.to}
-                className={`relative rounded-lg px-3 py-2 text-[13px] font-medium transition-colors text-ink/65 hover:text-forest`}
+                className={`relative rounded-lg px-3 py-2 text-[13px] font-medium transition-colors ${
+                  transparent ? "text-white/80 hover:text-white" : "text-ink/65 hover:text-forest"
+                }`}
                 activeProps={{
-                  className: "text-forest font-semibold",
+                  className: transparent ? "text-white font-semibold" : "text-forest font-semibold",
                 }}
                 activeOptions={{ exact: l.to === "/" }}
               >
@@ -70,20 +78,28 @@ export function Nav() {
         </ul>
 
         <div className="hidden items-center gap-2.5 lg:flex">
-          <ThemeToggle variant="dark" />
+          <ThemeToggle variant={transparent ? "light" : "dark"} />
           <Link
             to="/upcoming-trips"
-            className="inline-flex items-center rounded-lg bg-forest px-4 py-2 text-[13px] font-medium text-white transition hover:bg-forest/90 hover:shadow-[0_2px_8px_rgba(52,78,65,0.25)]"
+            className={`inline-flex items-center rounded-lg px-4 py-2 text-[13px] font-medium transition ${
+              transparent
+                ? "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
+                : "bg-forest text-white hover:bg-forest/90 hover:shadow-[0_2px_8px_rgba(52,78,65,0.25)]"
+            }`}
           >
             Book Now
           </Link>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle variant="dark" />
+          <ThemeToggle variant={transparent ? "light" : "dark"} />
           <button
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink/10 text-ink transition hover:bg-ink/5"
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border transition ${
+              transparent
+                ? "border-white/25 text-white hover:bg-white/10"
+                : "border-ink/10 text-ink hover:bg-ink/5"
+            }`}
             aria-label="Toggle menu"
             aria-expanded={open}
           >
