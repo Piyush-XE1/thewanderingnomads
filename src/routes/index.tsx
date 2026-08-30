@@ -164,15 +164,35 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const overlay = useTransform(scrollYProgress, [0, 1], [0.55, 0.85]);
 
+  const src = copy?.image_url ?? heroGroup;
+
   return (
     <section
       id="hero"
       ref={ref}
       className="relative min-h-[100svh] w-full overflow-hidden bg-neutral-950"
     >
-      <motion.div style={{ y, scale }} className="absolute inset-0">
+      {/* Blurred group photo fills the section — the "soft" half the copy sits on */}
+      <motion.div style={{ y, scale }} aria-hidden className="absolute inset-0">
         <img
-          src={copy?.image_url ?? heroGroup}
+          src={src}
+          alt=""
+          className="h-full w-full scale-125 object-cover object-center blur-2xl"
+        />
+      </motion.div>
+      <motion.div
+        style={{ opacity: overlay }}
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/55 to-black/65"
+      />
+
+      {/* Crisp group photo — top half on mobile, left half on desktop, feathered into the blur */}
+      <motion.div
+        style={{ y, scale }}
+        className="absolute inset-x-0 top-0 h-[45%] overflow-hidden [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] sm:inset-y-0 sm:left-0 sm:right-auto sm:h-full sm:w-1/2 sm:[mask-image:linear-gradient(to_right,black_70%,transparent_100%)]"
+      >
+        <img
+          src={src}
           alt="A community of travellers together on a Himalayan ridge at sunrise"
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
@@ -180,14 +200,8 @@ function Hero() {
           height={1280}
         />
       </motion.div>
-      {/* Left-weighted scrim keeps the headline legible over the group photo */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/20" />
-      <motion.div
-        style={{ opacity: overlay }}
-        className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/80"
-      />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-6 pb-24 pt-32 sm:pb-28">
+      <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-6 pb-20 pt-28 sm:absolute sm:inset-y-0 sm:left-1/2 sm:right-0 sm:justify-center sm:px-10 sm:pb-12 sm:pt-12 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -271,7 +285,7 @@ function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 1.5 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white/60"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white/60 sm:left-[75%]"
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
@@ -286,27 +300,9 @@ function Hero() {
   );
 }
 
-function Stars({ className = "" }: { className?: string }) {
-  return (
-    <span className={`inline-flex ${className}`} aria-hidden>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 20 20" className="h-3.5 w-3.5 fill-sunrise">
-          <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15l-5.3 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
-        </svg>
-      ))}
-    </span>
-  );
-}
-
 function RatingPill() {
   return (
     <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
-      <span className="inline-flex items-center gap-2">
-        <Stars />
-        <span className="text-[13px] font-semibold text-white">4.9</span>
-        <span className="text-[12px] text-white/70">on Google</span>
-      </span>
-      <span className="hidden h-4 w-px bg-white/25 sm:block" />
       <span className="text-[12px] text-white/80">2,500+ travellers hosted</span>
     </div>
   );
